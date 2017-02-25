@@ -133,6 +133,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-github-ssh-pxory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/25/github-ssh-pxory/">Mac上Github的ssh、http的代理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/25/github-ssh-pxory/" class="archive-article-date">
+  	<time datetime="2017-02-25T08:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为我们身处天朝外加某堵墙的原因，访问Github实在是不稳定，SSH慢的要死，简直了。现在交给大家利用ShadowScoket进行对Github的加速。</p>
+<h2 id="购买一个VPN"><a href="#购买一个VPN" class="headerlink" title="购买一个VPN"></a>购买一个VPN</h2><p>随便什么VPN都好，我这里用的是TMDVPN，我自己用的也是这个，感觉还不错，也不是很贵，有想要的童鞋请给我发Email：1024920977@qq.com，我买的是50元半年，一个月20G流量，我给你们个附带邀请码的注册地址。具体使用ShadowScoket的教程他们官网上都有。</p>
+<h2 id="设置Git的代理地址"><a href="#设置Git的代理地址" class="headerlink" title="设置Git的代理地址"></a>设置Git的代理地址</h2><h3 id="https、https代理"><a href="#https、https代理" class="headerlink" title="https、https代理"></a>https、https代理</h3><p>如各平台的 Shadowsocks 客户端都提供一个本地的 socks5 代理，那么你可以这样设置，让 Git 通过 HTTP 链接 clone 代码时走 socks5 代理,当然，你需要看看你的ShadowScoket的socks5的监听端口是多少（ShadowScoket里头高级设置有显示）。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//通过 http 链接 <span class="built_in">clone</span> 代码时走 socks5 代理</div><div class="line">git config --global http.proxy <span class="string">"socks5://127.0.0.1:1086"</span></div><div class="line">//通过 https 链接 <span class="built_in">clone</span> 代码时走 socks5代理</div><div class="line">git config --global https.proxy <span class="string">"socks5://127.0.0.1:1086"</span></div></pre></td></tr></table></figure></p>
+<h3 id="ssh代理"><a href="#ssh代理" class="headerlink" title="ssh代理"></a>ssh代理</h3><p>上面设置的 HTTP 代理对这种方式 clone 代码是没有影响的，也就是并不会加速，SSH 的代理需要单独设置，其实这个跟 Git 的关系已经不是很大，我们需要改的，是SSH 的配置。在用户目录下建立如下文件 ~/.ssh/config，对 GitHub 的域名做单独的处理<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">    <span class="comment"># 这里必须是 github.com，因为这个跟我们 clone 代码时的链接有关</span></div><div class="line">Host github.com</div><div class="line">   <span class="comment"># 如果用默认端口，这里是 github.com，如果想用443端口，这里就是 ssh.github.com 详见 https://help.github.com/articles/using-ssh-over-the-https-port/</span></div><div class="line">   HostName github.com</div><div class="line">   User git</div><div class="line">   <span class="comment"># 如果是 HTTP 代理，把下面这行取消注释，并把 proxyport 改成自己的 http 代理的端口</span></div><div class="line">   <span class="comment"># ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=6667</span></div><div class="line">   <span class="comment"># 如果是 socks5 代理，则把下面这行取消注释，并把 6666 改成自己 socks5 代理的端口</span></div><div class="line">   <span class="comment"># ProxyCommand nc -v -x 127.0.0.1:6666 %h %p</span></div></pre></td></tr></table></figure></p>
+<p>整个代理就完成了，以后你要是用http、http和ssh方式访问Github就会走ShadowScoket的socks5的代理，前提是你必须要讲ShadowScoket打开并且链接上vpn服务器，否则，并没有什么乱用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/25/github-ssh-pxory/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-SeleniumGridCustomServlet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -273,11 +339,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium Grid</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium Grid</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		
 		</ul>
@@ -596,15 +662,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">

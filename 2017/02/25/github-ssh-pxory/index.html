@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
-  <title>Archives | Angle&#39;s blog</title>
+  <title>Mac上Github的ssh、http的代理 | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Angle's blog">
-<meta property="og:url" content="https://yangle94.github.io/archives/index.html">
+  <meta name="description" content="因为我们身处天朝外加某堵墙的原因，访问Github实在是不稳定，SSH慢的要死，简直了。现在交给大家利用ShadowScoket进行对Github的加速。
+购买一个VPN随便什么VPN都好，我这里用的是TMDVPN，我自己用的也是这个，感觉还不错，也不是很贵，有想要的童鞋请给我发Email：1024920977@qq.com，我买的是50元半年，一个月20G流量，我给你们个附带邀请码的注册地址。具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac上Github的ssh、http的代理">
+<meta property="og:url" content="https://yangle94.github.io/2017/02/25/github-ssh-pxory/index.html">
 <meta property="og:site_name" content="Angle's blog">
+<meta property="og:description" content="因为我们身处天朝外加某堵墙的原因，访问Github实在是不稳定，SSH慢的要死，简直了。现在交给大家利用ShadowScoket进行对Github的加速。
+购买一个VPN随便什么VPN都好，我这里用的是TMDVPN，我自己用的也是这个，感觉还不错，也不是很贵，有想要的童鞋请给我发Email：1024920977@qq.com，我买的是50元半年，一个月20G流量，我给你们个附带邀请码的注册地址。具">
+<meta property="og:updated_time" content="2017-02-25T11:15:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angle's blog">
+<meta name="twitter:title" content="Mac上Github的ssh、http的代理">
+<meta name="twitter:description" content="因为我们身处天朝外加某堵墙的原因，访问Github实在是不稳定，SSH慢的要死，简直了。现在交给大家利用ShadowScoket进行对Github的加速。
+购买一个VPN随便什么VPN都好，我这里用的是TMDVPN，我自己用的也是这个，感觉还不错，也不是很贵，有想要的童鞋请给我发Email：1024920977@qq.com，我买的是50元半年，一个月20G流量，我给你们个附带邀请码的注册地址。具">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -131,36 +138,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-github-ssh-pxory" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/25/github-ssh-pxory/" class="archive-article-date">
-  	<time datetime="2017-02-25T08:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/25/github-ssh-pxory/">Mac上Github的ssh、http的代理</a>
+    <h1 class="article-title" itemprop="name">
+      Mac上Github的ssh、http的代理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/02/25/github-ssh-pxory/" class="archive-article-date">
+  	<time datetime="2017-02-25T08:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为我们身处天朝外加某堵墙的原因，访问Github实在是不稳定，SSH慢的要死，简直了。现在交给大家利用ShadowScoket进行对Github的加速。</p>
+<h2 id="购买一个VPN"><a href="#购买一个VPN" class="headerlink" title="购买一个VPN"></a>购买一个VPN</h2><p>随便什么VPN都好，我这里用的是TMDVPN，我自己用的也是这个，感觉还不错，也不是很贵，有想要的童鞋请给我发Email：1024920977@qq.com，我买的是50元半年，一个月20G流量，我给你们个附带邀请码的注册地址。具体使用ShadowScoket的教程他们官网上都有。</p>
+<h2 id="设置Git的代理地址"><a href="#设置Git的代理地址" class="headerlink" title="设置Git的代理地址"></a>设置Git的代理地址</h2><h3 id="https、https代理"><a href="#https、https代理" class="headerlink" title="https、https代理"></a>https、https代理</h3><p>如各平台的 Shadowsocks 客户端都提供一个本地的 socks5 代理，那么你可以这样设置，让 Git 通过 HTTP 链接 clone 代码时走 socks5 代理,当然，你需要看看你的ShadowScoket的socks5的监听端口是多少（ShadowScoket里头高级设置有显示）。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//通过 http 链接 <span class="built_in">clone</span> 代码时走 socks5 代理</div><div class="line">git config --global http.proxy <span class="string">"socks5://127.0.0.1:1086"</span></div><div class="line">//通过 https 链接 <span class="built_in">clone</span> 代码时走 socks5代理</div><div class="line">git config --global https.proxy <span class="string">"socks5://127.0.0.1:1086"</span></div></pre></td></tr></table></figure></p>
+<h3 id="ssh代理"><a href="#ssh代理" class="headerlink" title="ssh代理"></a>ssh代理</h3><p>上面设置的 HTTP 代理对这种方式 clone 代码是没有影响的，也就是并不会加速，SSH 的代理需要单独设置，其实这个跟 Git 的关系已经不是很大，我们需要改的，是SSH 的配置。在用户目录下建立如下文件 ~/.ssh/config，对 GitHub 的域名做单独的处理<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">    <span class="comment"># 这里必须是 github.com，因为这个跟我们 clone 代码时的链接有关</span></div><div class="line">Host github.com</div><div class="line">   <span class="comment"># 如果用默认端口，这里是 github.com，如果想用443端口，这里就是 ssh.github.com 详见 https://help.github.com/articles/using-ssh-over-the-https-port/</span></div><div class="line">   HostName github.com</div><div class="line">   User git</div><div class="line">   <span class="comment"># 如果是 HTTP 代理，把下面这行取消注释，并把 proxyport 改成自己的 http 代理的端口</span></div><div class="line">   <span class="comment"># ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=6667</span></div><div class="line">   <span class="comment"># 如果是 socks5 代理，则把下面这行取消注释，并把 6666 改成自己 socks5 代理的端口</span></div><div class="line">   <span class="comment"># ProxyCommand nc -v -x 127.0.0.1:6666 %h %p</span></div></pre></td></tr></table></figure></p>
+<p>整个代理就完成了，以后你要是用http、http和ssh方式访问Github就会走ShadowScoket的socks5的代理，前提是你必须要讲ShadowScoket打开并且链接上vpn服务器，否则，并没有什么乱用。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiivgasq3.bkt.clouddn.com/B0088D76BF6773FB6A8D860804BD646F.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiivgasq3.bkt.clouddn.com/FC5682D4A8E689A59B9D063A73F75585.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -172,238 +213,106 @@
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/07/SeleniumGridCustomServlet/" class="archive-article-date">
-  	<time datetime="2017-02-07T07:45:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/07/SeleniumGridCustomServlet/">自定义Selenium Grid2 Servlet</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium Grid</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/07/docker-selenium/" class="archive-article-date">
-  	<time datetime="2017-02-07T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/07/docker-selenium/">docker化selenium grid</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium Grid</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/28/innerClass/" class="archive-article-date">
-  	<time datetime="2016-12-28T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/28/innerClass/">java内部类实现原理以及注意事项</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/02/25/github-ssh-pxory/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ß/" class="article-tag-list-link color2">ß</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/27/jqAjaxResError/" class="archive-article-date">
-  	<time datetime="2016-12-27T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-27</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/27/jqAjaxResError/">jq的ajax请求后台未出错却进入error问题</a>
-    </h1>
+  
+    <a href="/2017/02/07/SeleniumGridCustomServlet/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">自定义Selenium Grid2 Servlet</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="github-ssh-pxory" data-title="Mac上Github的ssh、http的代理" data-url="https://yangle94.github.io/2017/02/25/github-ssh-pxory/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"anglesss"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jq</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/25/index/" class="archive-article-date">
-  	<time datetime="2016-12-25T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/25/index/">开博了～</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -426,8 +335,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
