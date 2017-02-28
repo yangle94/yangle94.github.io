@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
-  <title>jq的ajax请求后台未出错却进入error问题 | Angle&#39;s blog</title>
+  <title>Java transient关键字使用记录 | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现象:1234567891011121314jq进行ajax请求，后端并为报错，状态码为200但ajax请求进入error方法。	$.ajax(&amp;#123;	url : &quot;http:/www.baidu.com&quot;,	data : &amp;#123;		param : &quot;param&quot;	&amp;#125;	dataType : &quot;json&quot;,	success : function(data) &amp;#123;		al">
+  <meta name="description" content="今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。
+transient的作用及使用方法
+我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jq的ajax请求后台未出错却进入error问题">
-<meta property="og:url" content="https://yangle94.github.io/2016/12/27/jqAjaxResError/index.html">
+<meta property="og:title" content="Java transient关键字使用记录">
+<meta property="og:url" content="https://yangle94.github.io/2017/02/28/Java-transient/index.html">
 <meta property="og:site_name" content="Angle's blog">
-<meta property="og:description" content="现象:1234567891011121314jq进行ajax请求，后端并为报错，状态码为200但ajax请求进入error方法。	$.ajax(&amp;#123;	url : &quot;http:/www.baidu.com&quot;,	data : &amp;#123;		param : &quot;param&quot;	&amp;#125;	dataType : &quot;json&quot;,	success : function(data) &amp;#123;		al">
-<meta property="og:updated_time" content="2017-02-21T08:53:20.000Z">
+<meta property="og:description" content="今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。
+transient的作用及使用方法
+我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有">
+<meta property="og:updated_time" content="2017-02-28T14:35:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jq的ajax请求后台未出错却进入error问题">
-<meta name="twitter:description" content="现象:1234567891011121314jq进行ajax请求，后端并为报错，状态码为200但ajax请求进入error方法。	$.ajax(&amp;#123;	url : &quot;http:/www.baidu.com&quot;,	data : &amp;#123;		param : &quot;param&quot;	&amp;#125;	dataType : &quot;json&quot;,	success : function(data) &amp;#123;		al">
+<meta name="twitter:title" content="Java transient关键字使用记录">
+<meta name="twitter:description" content="今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。
+transient的作用及使用方法
+我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -135,30 +141,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jqAjaxResError" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java-transient" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      jq的ajax请求后台未出错却进入error问题
+      Java transient关键字使用记录
     </h1>
   
 
         
-        <a href="/2016/12/27/jqAjaxResError/" class="archive-article-date">
-  	<time datetime="2016-12-27T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-27</time>
+        <a href="/2017/02/28/Java-transient/" class="archive-article-date">
+  	<time datetime="2017-02-28T14:01:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="现象"><a href="#现象" class="headerlink" title="现象:"></a>现象:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">jq进行ajax请求，后端并为报错，状态码为<span class="number">200</span>但ajax请求进入error方法。</div><div class="line">	$.ajax(&#123;</div><div class="line">	<span class="attr">url</span> : <span class="string">"http:/www.baidu.com"</span>,</div><div class="line">	<span class="attr">data</span> : &#123;</div><div class="line">		<span class="attr">param</span> : <span class="string">"param"</span></div><div class="line">	&#125;</div><div class="line">	dataType : <span class="string">"json"</span>,</div><div class="line">	<span class="attr">success</span> : <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">		alert(<span class="string">"返回成功，进入成功方法"</span>);</div><div class="line">	&#125;</div><div class="line">	error : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		alert(<span class="string">"返回失败，进入失败方法"</span>)</div><div class="line">	&#125;		</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h3 id="检查思路"><a href="#检查思路" class="headerlink" title="检查思路:"></a>检查思路:</h3><p>1.查看后端日志，发现后端并未报错。<br>2.打开谷歌浏览器调试模式，发现状态吗为200。</p>
-<p>由此可推断出后台并为发生任何异常，判断并不是因为后端错误所导致。由此可以判断能够接触到返回数据并出现错误的只能是js部分。</p>
-<h3 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h3><p>查询资料后发现，对于ajax请求如果规定了返回值的格式（dataType），则返回值一定要符合dataType的格式。若返回的格式跟dataType的格式不相符，js会在解析的时候报错，由此进入了error的方法。后端以前返回值为”success”，将其改为{“isSuccess” : “success”}后进行返回，程序运行成功，进入ajax的success方法。<br>由此可见，若规定了dataType以后，后端返回的数据必须符合此格式，否则，前端js在解析的时候会发生错误。</p>
+        <p>今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。</p>
+<h2 id="transient的作用及使用方法"><a href="#transient的作用及使用方法" class="headerlink" title="transient的作用及使用方法"></a>transient的作用及使用方法</h2><hr>
+<p>我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有某些属性我们并不想让它进行序列化，可以对此属性加上transient关键字，以后这个属性就不会再被进行序列化和反序列化。当然，这也成为它的局限性，因为没法让序列化、反序列化不同时进行。</p>
+<p>样例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String passwd;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPasswd</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> passwd;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String passwd)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.passwd = passwd;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="transient使用小结"><a href="#transient使用小结" class="headerlink" title="transient使用小结"></a>transient使用小结</h2><hr>
+<ol>
+<li>被transient修饰的变量，如果进行序列化：比如写入到文件中，则此变量就不能再被读取到，会被 赋值为null</li>
+<li>transient关键字只能修饰成员变量，不能修饰方法和类。如果某个类中需要使用此关键字，必须将 该类实现Serilizable接口</li>
+<li>静态变量不论是否被修饰，均不可被序列化。此时注意，虽然再次反序列化以后static变量可能还会有值，此时这个值对应的为当前虚拟机中整个类所对应的值，并非因为将该属性序列化时对此属性进行了序列化。因为static变量为类共有，此属性为类共有，而并非对象私有。</li>
+</ol>
 
       
 
@@ -203,11 +215,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jq</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FastJson</a>
         		</li>
       		
 		</ul>
@@ -263,7 +275,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2016/12/27/jqAjaxResError/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/02/28/Java-transient/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,18 +289,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/28/innerClass/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java内部类实现原理以及注意事项
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/25/index/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">开博了～</div>
+    <a href="/2017/02/25/github-ssh-pxory/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac上Github的ssh、http的代理</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -302,7 +305,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="jqAjaxResError" data-title="jq的ajax请求后台未出错却进入error问题" data-url="https://yangle94.github.io/2016/12/27/jqAjaxResError/"></div>
+	<div class="ds-thread" data-thread-key="Java-transient" data-title="Java transient关键字使用记录" data-url="https://yangle94.github.io/2017/02/28/Java-transient/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
