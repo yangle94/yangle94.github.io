@@ -133,6 +133,75 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringMVC-Annotation-RequestBody" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/01/SpringMVC-Annotation-RequestBody/">SpringMVC_Annotation_@RequestBody</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/01/SpringMVC-Annotation-RequestBody/" class="archive-article-date">
+  	<time datetime="2017-03-01T11:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="RequestBody注解的源码"><a href="#RequestBody注解的源码" class="headerlink" title="@RequestBody注解的源码"></a>@RequestBody注解的源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER&#125;)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestBody &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由源码可见，@RequestBody只有一个required属性，默认值为true，该注解会保留至.class文件中，利用反射可以进行查找。</p>
+<h2 id="RequestBody的作用"><a href="#RequestBody的作用" class="headerlink" title="@RequestBody的作用"></a>@RequestBody的作用</h2><p>该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；</p>
+<p>它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。</p>
+<p>因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap<string, string="">里，这种情况在某些特殊需求下使用，详情查看FormHttpMessageConverter api;</string,></p>
+<p>例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"sendMessage"</span>, method = RequestMethod.POST)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sendMesscage</span><span class="params">(@RequestBody UserIdCodeDTO userIdCodeMessageDTO)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> userIdCodeMessageDTO.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运用次注解后，SprimgMVC将会把post或者get请求来的信息进行逆序列化，组成对象，前提是你传过来的值跟该对象匹配。</p>
+<h3 id="注意！！"><a href="#注意！！" class="headerlink" title="注意！！"></a>注意！！</h3><p>使用该注解以后，若想传送非json格式代码，需要指定请求头Content-Type为application/json，否则对象所有属性将为null。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/01/SpringMVC-Annotation-RequestBody/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Java-transient" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,9 +228,9 @@
 <p>样例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String passwd;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPasswd</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> passwd;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String passwd)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.passwd = passwd;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="transient使用小结"><a href="#transient使用小结" class="headerlink" title="transient使用小结"></a>transient使用小结</h2><hr>
 <ol>
-<li>被transient修饰的变量，如果进行序列化：比如写入到文件中，则此变量就不能再被读取到，会被 赋值为null</li>
-<li>transient关键字只能修饰成员变量，不能修饰方法和类。如果某个类中需要使用此关键字，必须将 该类实现Serilizable接口</li>
-<li>静态变量不论是否被修饰，均不可被序列化。此时注意，虽然再次反序列化以后static变量可能还会有值，此时这个值对应的为当前虚拟机中整个类所对应的值，并非因为将该属性序列化时对此属性进行了序列化。因为static变量为类共有，此属性为类共有，而并非对象私有。</li>
+<li>&emsp;&emsp;被transient修饰的变量，如果进行序列化：比如写入到文件中，则此变量就不能再被读取到，会被赋值为null</li>
+<li>&emsp;&emsp;transient关键字只能修饰成员变量，不能修饰方法和类。如果某个类中需要使用此关键字，必须将该类实现Serilizable接口</li>
+<li>&emsp;&emsp;静态变量不论是否被修饰，均不可被序列化。此时注意，虽然再次反序列化以后static变量可能还会有值，此时这个值对应的为当前虚拟机中整个类所对应的值，并非因为将该属性序列化时对此属性进行了序列化。因为static变量为类共有，此属性为类共有，而并非对象私有。</li>
 </ol>
 
       
@@ -735,6 +804,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>

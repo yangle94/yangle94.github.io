@@ -6,42 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
-  <title>docker化selenium grid | Angle&#39;s blog</title>
+  <title>SpringMVC_Annotation_@RequestBody | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。
-1 使用场景调研
-
-完成某个功能的所有操作步骤在同一个页面、session中。
-
-对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。
-
-对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
+  <meta name="description" content="@RequestBody注解的源码123456@Target(&amp;#123;ElementType.PARAMETER&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interface RequestBody &amp;#123;    boolean required() default true;&amp;#125;
+由源码可见，@Req">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker化selenium grid">
-<meta property="og:url" content="https://yangle94.github.io/2017/02/07/docker-selenium/index.html">
+<meta property="og:title" content="SpringMVC_Annotation_@RequestBody">
+<meta property="og:url" content="https://yangle94.github.io/2017/03/01/SpringMVC-Annotation-RequestBody/index.html">
 <meta property="og:site_name" content="Angle's blog">
-<meta property="og:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。
-1 使用场景调研
-
-完成某个功能的所有操作步骤在同一个页面、session中。
-
-对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。
-
-对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
-<meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg">
-<meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png">
-<meta property="og:updated_time" content="2017-02-21T09:09:33.000Z">
+<meta property="og:description" content="@RequestBody注解的源码123456@Target(&amp;#123;ElementType.PARAMETER&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interface RequestBody &amp;#123;    boolean required() default true;&amp;#125;
+由源码可见，@Req">
+<meta property="og:updated_time" content="2017-03-01T11:42:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker化selenium grid">
-<meta name="twitter:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。
-1 使用场景调研
-
-完成某个功能的所有操作步骤在同一个页面、session中。
-
-对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。
-
-对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
-<meta name="twitter:image" content="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg">
+<meta name="twitter:title" content="SpringMVC_Annotation_@RequestBody">
+<meta name="twitter:description" content="@RequestBody注解的源码123456@Target(&amp;#123;ElementType.PARAMETER&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interface RequestBody &amp;#123;    boolean required() default true;&amp;#125;
+由源码可见，@Req">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -159,57 +138,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-docker-selenium" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SpringMVC-Annotation-RequestBody" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      docker化selenium grid
+      SpringMVC_Annotation_@RequestBody
     </h1>
   
 
         
-        <a href="/2017/02/07/docker-selenium/" class="archive-article-date">
-  	<time datetime="2017-02-07T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
+        <a href="/2017/03/01/SpringMVC-Annotation-RequestBody/" class="archive-article-date">
+  	<time datetime="2017-03-01T11:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。</p>
-<h2 id="1-使用场景调研"><a href="#1-使用场景调研" class="headerlink" title="1 使用场景调研"></a>1 使用场景调研</h2><hr>
-<ol>
-<li><p>完成某个功能的所有操作步骤在同一个页面、session中。</p>
-</li>
-<li><p>对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。</p>
-</li>
-<li><p>对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行模拟键盘输入时，保证所有键盘操作必须相互隔离，保证对应的模拟键盘输入进入其对应的输入框内。</p>
-</li>
-<li><p>对所有请求进行调度排序。</p>
-</li>
-<li><p>设定超时时间，对超过时间限制的请求进行删除，保证资源的释放。</p>
-</li>
-<li><p>对各个selenium节点有对应功能性监控（比如某个节点是否空闲等）。</p>
-</li>
-<li><p>各个selenium节点对应的日志查看问题。</p>
-</li>
-</ol>
-<h2 id="2-Docker化Selenium-Grid2还存在的问题"><a href="#2-Docker化Selenium-Grid2还存在的问题" class="headerlink" title="2 Docker化Selenium Grid2还存在的问题"></a>2 Docker化Selenium Grid2还存在的问题</h2><hr>
-<p>Windows对docker提供的镜像分别为nanoServer和windowsservercore，但其中并不存在GUI、IE等所需内容，查阅官方资料，官方人员说明目前项目并不支持GUI操作。详见<a href="https://blog.docker.com/2016/09/dockerforws2016/#comment-367168" target="_blank" rel="external">关于docker产品经理对于Windows GUI的说明</a>。 目前对于windows镜像需要人为的干预。目前我所采用的方式是为单独建立windows的虚拟机，在虚拟机上对重新部署selenium。<br>在对含有插件的页面进行访问时，需要提前将插件安装好，也就是说需要提前对docker file进行构建。</p>
-<h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg" alt=""></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
-<p>在selenium grid的hub节点中自带了一个监控页面，用于监控每个节点的运行情况、ip端口信息，包括有多少任务在排队中当前总共有多少任务在运行等，此页面访问地址为selenium hub节点的4444端口。<br><img src="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png" alt=""></p>
-<h2 id="5-部署步骤"><a href="#5-部署步骤" class="headerlink" title="5 部署步骤"></a>5 部署步骤</h2><hr>
-<p>部署selenium hub<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 4444:4444 –name selenium-hub angley/selenium-hub:1.1</div></pre></td></tr></table></figure></p>
-<p>部署chrome<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -P -p 5900:5900 –link selenium-hub:hub –name chrome angley/node-</div><div class="line">chrome-debug:1.0</div></pre></td></tr></table></figure></p>
-<p>部署firefox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -P -p 5901:5900 –link selenium-hub:hub –name firefox angley/node-firefox-debug:1.0</div></pre></td></tr></table></figure></p>
-<p>部署IE<br>nodeconfig.json<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">“capabilities”:</div><div class="line">    [</div><div class="line">        &#123;</div><div class="line">            “browserName”: “internet explorer”,</div><div class="line">            “maxInstances”: 3,</div><div class="line">            “seleniumProtocol”: “WebDriver”</div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">“proxy”: “org.openqa.grid.selenium.proxy.DefaultRemoteProxy”,</div><div class="line">“maxSession”: 3,</div><div class="line">“port”: 5555,</div><div class="line">“register”: true,</div><div class="line">“registerCycle”: 5000,</div><div class="line">“hub”: “http://localhost:4444“,</div><div class="line">“nodeStatusCheckTimeout”: 5000,</div><div class="line">“nodePolling”: 5000,</div><div class="line">“role”: “node”,</div><div class="line">“unregisterIfStillDownAfter”: 60000,</div><div class="line">“downPollingLimit”: 2,</div><div class="line">“debug”: false,</div><div class="line">“servlets” : [],</div><div class="line">“withoutServlets”: [],</div><div class="line">“custom”: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>下载selenium-server-standalone-3.0.1.jar</p>
-<p>下载地址：<br><a href="https://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar" target="_blank" rel="external">https://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar</a></p>
-<p>部署命令<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone.jar -role node -nodeConfig nodeconfig.json</div></pre></td></tr></table></figure></p>
-<h3 id="6-已解决的问题"><a href="#6-已解决的问题" class="headerlink" title="6 已解决的问题"></a>6 已解决的问题</h3><p>我所用的原始Selenium Grid Docker镜像中有中文乱码问题，需要在docker file中加入字符集解决。<br>Selenium Grid中存在监控功能并不完善，若想要获取此类信息数据，需要加入自定义servlet（关于此章我会在另一片文章中介绍）</p>
+        <h2 id="RequestBody注解的源码"><a href="#RequestBody注解的源码" class="headerlink" title="@RequestBody注解的源码"></a>@RequestBody注解的源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER&#125;)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestBody &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由源码可见，@RequestBody只有一个required属性，默认值为true，该注解会保留至.class文件中，利用反射可以进行查找。</p>
+<h2 id="RequestBody的作用"><a href="#RequestBody的作用" class="headerlink" title="@RequestBody的作用"></a>@RequestBody的作用</h2><p>该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；</p>
+<p>它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。</p>
+<p>因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap<string, string="">里，这种情况在某些特殊需求下使用，详情查看FormHttpMessageConverter api;</string,></p>
+<p>例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"sendMessage"</span>, method = RequestMethod.POST)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sendMesscage</span><span class="params">(@RequestBody UserIdCodeDTO userIdCodeMessageDTO)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> userIdCodeMessageDTO.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运用次注解后，SprimgMVC将会把post或者get请求来的信息进行逆序列化，组成对象，前提是你传过来的值跟该对象匹配。</p>
+<h3 id="注意！！"><a href="#注意！！" class="headerlink" title="注意！！"></a>注意！！</h3><p>使用该注解以后，若想传送非json格式代码，需要指定请求头Content-Type为application/json，否则对象所有属性将为null。</p>
 
       
 
@@ -254,11 +210,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium Grid</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
         		</li>
       		
 		</ul>
@@ -314,7 +266,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/02/07/docker-selenium/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/03/01/SpringMVC-Annotation-RequestBody/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -328,18 +280,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/02/07/SeleniumGridCustomServlet/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          自定义Selenium Grid2 Servlet
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/28/innerClass/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java内部类实现原理以及注意事项</div>
+    <a href="/2017/02/28/Java-transient/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java transient关键字使用记录</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -353,7 +296,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="docker-selenium" data-title="docker化selenium grid" data-url="https://yangle94.github.io/2017/02/07/docker-selenium/"></div>
+	<div class="ds-thread" data-thread-key="SpringMVC-Annotation-RequestBody" data-title="SpringMVC_Annotation_@RequestBody" data-url="https://yangle94.github.io/2017/03/01/SpringMVC-Annotation-RequestBody/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

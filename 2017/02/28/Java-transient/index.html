@@ -18,7 +18,7 @@ transient的作用及使用方法
 <meta property="og:description" content="今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。
 transient的作用及使用方法
 我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有">
-<meta property="og:updated_time" content="2017-02-28T14:35:10.000Z">
+<meta property="og:updated_time" content="2017-02-28T14:39:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java transient关键字使用记录">
 <meta name="twitter:description" content="今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。
@@ -167,9 +167,9 @@ transient的作用及使用方法
 <p>样例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String passwd;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPasswd</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> passwd;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String passwd)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.passwd = passwd;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="transient使用小结"><a href="#transient使用小结" class="headerlink" title="transient使用小结"></a>transient使用小结</h2><hr>
 <ol>
-<li>被transient修饰的变量，如果进行序列化：比如写入到文件中，则此变量就不能再被读取到，会被 赋值为null</li>
-<li>transient关键字只能修饰成员变量，不能修饰方法和类。如果某个类中需要使用此关键字，必须将 该类实现Serilizable接口</li>
-<li>静态变量不论是否被修饰，均不可被序列化。此时注意，虽然再次反序列化以后static变量可能还会有值，此时这个值对应的为当前虚拟机中整个类所对应的值，并非因为将该属性序列化时对此属性进行了序列化。因为static变量为类共有，此属性为类共有，而并非对象私有。</li>
+<li>&emsp;&emsp;被transient修饰的变量，如果进行序列化：比如写入到文件中，则此变量就不能再被读取到，会被赋值为null</li>
+<li>&emsp;&emsp;transient关键字只能修饰成员变量，不能修饰方法和类。如果某个类中需要使用此关键字，必须将该类实现Serilizable接口</li>
+<li>&emsp;&emsp;静态变量不论是否被修饰，均不可被序列化。此时注意，虽然再次反序列化以后static变量可能还会有值，此时这个值对应的为当前虚拟机中整个类所对应的值，并非因为将该属性序列化时对此属性进行了序列化。因为static变量为类共有，此属性为类共有，而并非对象私有。</li>
 </ol>
 
       
@@ -289,6 +289,15 @@ transient的作用及使用方法
   
 <nav id="article-nav">
   
+    <a href="/2017/03/01/SpringMVC-Annotation-RequestBody/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SpringMVC_Annotation_@RequestBody
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/02/25/github-ssh-pxory/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Mac上Github的ssh、http的代理</div>
@@ -403,6 +412,10 @@ transient的作用及使用方法
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
