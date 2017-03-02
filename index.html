@@ -133,6 +133,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-staticFactory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/02/staticFactory/">考虑用静态工厂方法替代构造函数</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/02/staticFactory/" class="archive-article-date">
+  	<time datetime="2017-03-02T14:04:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="静态工厂方法优点"><a href="#静态工厂方法优点" class="headerlink" title="静态工厂方法优点"></a>静态工厂方法优点</h2><ol>
+<li>静态工厂方法有名称，根据名称可以做到见文知意。对于构造方法而言，由于方法签名的原因，一个类只可能一种相同的方法签名，当然，可以通过参数顺序来克服这个问题，但是，相同参数容易让人混乱，而且有可能错过了编译器的异常。</li>
+<li>静态工厂方法可以不必每次调用它的时候都创建一个新的对象。</li>
+<li>可以返回原返回类型的任何子类型对象。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Service</span></span>&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Provider</span></span>&#123;</div><div class="line">    <span class="function">Service <span class="title">newService</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Service</span> </span>&#123;</div><div class="line">    <span class="comment">//不允许外部实例化</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Service</span><span class="params">()</span></span>&#123;&#125;;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String,Provider&gt; providers = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String defKey = <span class="string">"&lt;def&gt;"</span>;</div><div class="line"></div><div class="line">    <span class="comment">//注册</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(Provider provider)</span> </span>&#123;</div><div class="line">        registerProvider(defKey, provider);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(String name, Provider provider)</span> </span>&#123;</div><div class="line">        providers.put(name, provider);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//获取</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> newInstance(defkey);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        Provider p =  providers.get(name);</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == p) </div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IlleaglArgumentException(<span class="string">"No provider registered with name : "</span> + name);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> p.newService();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h2><ol>
+<li>类如果不含有公有或者受保护的构造方法，就不能被子类化。因祸得福的是，我们鼓励复合，而不是继承。</li>
+<li>静态工厂方法与普通静态方法没有任何区别，“赶着一等公民（构造方法）的活儿，却享受不到一等公民的待遇（Javadoc等工具并不关注静态工厂方法)</li>
+</ol>
+<h2 id="何时应该用静态工厂方法"><a href="#何时应该用静态工厂方法" class="headerlink" title="何时应该用静态工厂方法"></a>何时应该用静态工厂方法</h2><ol>
+<li>如果需要大量含有共同签名的构造方法的时候。</li>
+<li>每次返回的对象是不可变类的时候，可以提前构造好对象供其使用。</li>
+<li>需要返回不同的子类的时候。</li>
+</ol>
+<h3 id="静态工厂方法命名"><a href="#静态工厂方法命名" class="headerlink" title="静态工厂方法命名"></a>静态工厂方法命名</h3><ol>
+<li>valueOf —- 返回值与参数具有相同的值</li>
+<li>of —- valueOf的替代</li>
+<li>geteInstance —- 通过参数描述返回实例，但是值不一定相同</li>
+<li>newInstance —- 创建一个新的对象</li>
+<li>getType —- Type表示返回的实例的类型</li>
+<li>newType —- 返回一个新的实例</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/02/staticFactory/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-SpringMVC-Annotation-RequestBody" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -822,7 +906,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -830,7 +914,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
