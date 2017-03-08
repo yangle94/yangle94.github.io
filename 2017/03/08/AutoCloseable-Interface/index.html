@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
-  <title>AutoCloseable_Interface | Angle&#39;s blog</title>
+  <title>带有资源的try语句（AutoCloseable） | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="今天在关闭输入输出流的时候，觉得总是手动去关闭太麻烦，有没有什么简单的方法。于是乎发现了AutoCloseable这个接口。
 重申一下为什么要手动关闭输入输出流对于平常的Java对象来说，如果Java的gc机制发现某个对象已经不可到达，就会启动对此对象的内存回收机制。当然，他什么时候能够把对象回收完了，是根据操作系统的调度来决定的，并不是说gc机制一起动，就能立刻回收此对象的内存。但是对于Inpu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AutoCloseable_Interface">
+<meta property="og:title" content="带有资源的try语句（AutoCloseable）">
 <meta property="og:url" content="https://yangle94.github.io/2017/03/08/AutoCloseable-Interface/index.html">
 <meta property="og:site_name" content="Angle's blog">
 <meta property="og:description" content="今天在关闭输入输出流的时候，觉得总是手动去关闭太麻烦，有没有什么简单的方法。于是乎发现了AutoCloseable这个接口。
 重申一下为什么要手动关闭输入输出流对于平常的Java对象来说，如果Java的gc机制发现某个对象已经不可到达，就会启动对此对象的内存回收机制。当然，他什么时候能够把对象回收完了，是根据操作系统的调度来决定的，并不是说gc机制一起动，就能立刻回收此对象的内存。但是对于Inpu">
-<meta property="og:updated_time" content="2017-03-08T03:13:45.000Z">
+<meta property="og:updated_time" content="2017-03-08T08:17:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AutoCloseable_Interface">
+<meta name="twitter:title" content="带有资源的try语句（AutoCloseable）">
 <meta name="twitter:description" content="今天在关闭输入输出流的时候，觉得总是手动去关闭太麻烦，有没有什么简单的方法。于是乎发现了AutoCloseable这个接口。
 重申一下为什么要手动关闭输入输出流对于平常的Java对象来说，如果Java的gc机制发现某个对象已经不可到达，就会启动对此对象的内存回收机制。当然，他什么时候能够把对象回收完了，是根据操作系统的调度来决定的，并不是说gc机制一起动，就能立刻回收此对象的内存。但是对于Inpu">
   
@@ -145,7 +145,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      AutoCloseable_Interface
+      带有资源的try语句（AutoCloseable）
     </h1>
   
 
@@ -214,7 +214,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AutoClostable</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AutoCloseable</a>
         		</li>
       		
 		</ul>
@@ -288,7 +288,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          maven_uploadJar
+          maven上传文件到私库
         
       </div>
     </a>
@@ -309,7 +309,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="AutoCloseable-Interface" data-title="AutoCloseable_Interface" data-url="https://yangle94.github.io/2017/03/08/AutoCloseable-Interface/"></div>
+	<div class="ds-thread" data-thread-key="AutoCloseable-Interface" data-title="带有资源的try语句（AutoCloseable）" data-url="https://yangle94.github.io/2017/03/08/AutoCloseable-Interface/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -413,15 +413,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">AutoClostable</a>
+                <a href="javascript:void(0)" class="js-tag color4">AutoCloseable</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">FastJson</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -433,7 +429,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -441,7 +437,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,6 +446,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jq</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
