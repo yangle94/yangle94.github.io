@@ -6,14 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
-  <title>Tag: AutoCloseable | Angle&#39;s blog</title>
+  <title>swagger-ui注解 | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Angle's blog">
-<meta property="og:url" content="https://yangle94.github.io/tags/AutoCloseable/index.html">
+  <meta name="description" content="今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。
+@Api用在类上，说明该类的作用
+@ApiOperation用在方法上，说明方法的作用
+@ApiImplicitParams、@ApiImplicitParam用在方法上包含一组参数说明用在@ApiImplicitParams注解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="swagger-ui注解">
+<meta property="og:url" content="https://yangle94.github.io/2017/03/14/swagger-annotation/index.html">
 <meta property="og:site_name" content="Angle's blog">
+<meta property="og:description" content="今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。
+@Api用在类上，说明该类的作用
+@ApiOperation用在方法上，说明方法的作用
+@ApiImplicitParams、@ApiImplicitParam用在方法上包含一组参数说明用在@ApiImplicitParams注解">
+<meta property="og:updated_time" content="2017-03-14T02:36:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angle's blog">
+<meta name="twitter:title" content="swagger-ui注解">
+<meta name="twitter:description" content="今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。
+@Api用在类上，说明该类的作用
+@ApiOperation用在方法上，说明方法的作用
+@ApiImplicitParams、@ApiImplicitParam用在方法上包含一组参数说明用在@ApiImplicitParams注解">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -131,64 +144,184 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-swagger-annotation" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/08/AutoCloseable-Interface/" class="archive-article-date">
-  	<time datetime="2017-03-08T01:45:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/08/AutoCloseable-Interface/">带有资源的try语句（AutoCloseable）</a>
+    <h1 class="article-title" itemprop="name">
+      swagger-ui注解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/03/14/swagger-annotation/" class="archive-article-date">
+  	<time datetime="2017-03-14T02:30:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。</p>
+<h3 id="Api"><a href="#Api" class="headerlink" title="@Api"></a>@Api</h3><p>用在类上，说明该类的作用</p>
+<h3 id="ApiOperation"><a href="#ApiOperation" class="headerlink" title="@ApiOperation"></a>@ApiOperation</h3><p>用在方法上，说明方法的作用</p>
+<h3 id="ApiImplicitParams、-ApiImplicitParam"><a href="#ApiImplicitParams、-ApiImplicitParam" class="headerlink" title="@ApiImplicitParams、@ApiImplicitParam"></a>@ApiImplicitParams、@ApiImplicitParam</h3><p>用在方法上包含一组参数说明<br>用在@ApiImplicitParams注解中，指定一个请求参数的各个方面<br>paramType:<br>参数放在哪个地方<br>header–&gt;请求参数的获取：@RequestHeader<br>query–&gt;请求参数的获取：@RequestParam<br>path（用于restful接口）–&gt;请求参数的获取：@PathVariable<br>body（不常用）<br>form（不常用）<br>name：参数名<br>dataType：参数类型<br>required：参数是否必须传<br>value：参数的意思<br>defaultValue：参数的默认值</p>
+<h3 id="ApiResponses"><a href="#ApiResponses" class="headerlink" title="@ApiResponses"></a>@ApiResponses</h3><p>用于表示一组响应</p>
+<h3 id="ApiResponse"><a href="#ApiResponse" class="headerlink" title="@ApiResponse"></a>@ApiResponse</h3><p>用在@ApiResponses中，一般用于表达一个错误的响应信息<br>code：数字，例如400<br>message：信息，例如”请求参数没填好”<br>response：抛出异常的类</p>
+<h3 id="ApiModel"><a href="#ApiModel" class="headerlink" title="@ApiModel"></a>@ApiModel</h3><p>描述一个Model的信息（这种一般用在post创建的时候，使用@RequestBody这样的场景，请求参数无法使用@ApiImplicitParam注解进行描述的时候）</p>
+<h3 id="ApiModelProperty"><a href="#ApiModelProperty" class="headerlink" title="@ApiModelProperty"></a>@ApiModelProperty</h3><p>描述一个model的属性</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiivgasq3.bkt.clouddn.com/B0088D76BF6773FB6A8D860804BD646F.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiivgasq3.bkt.clouddn.com/FC5682D4A8E689A59B9D063A73F75585.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AutoCloseable</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">swagger-ui</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/03/14/swagger-annotation/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/08/maven-uploadJar/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">maven上传文件到私库</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="swagger-annotation" data-title="swagger-ui注解" data-url="https://yangle94.github.io/2017/03/14/swagger-annotation/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"anglesss"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -211,9 +344,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

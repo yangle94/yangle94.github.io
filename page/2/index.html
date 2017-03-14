@@ -133,6 +133,75 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jqAjaxResError" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/27/jqAjaxResError/">jq的ajax请求后台未出错却进入error问题</a>
+    </h1>
+  
+
+        
+        <a href="/2016/12/27/jqAjaxResError/" class="archive-article-date">
+  	<time datetime="2016-12-27T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="现象"><a href="#现象" class="headerlink" title="现象:"></a>现象:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">jq进行ajax请求，后端并为报错，状态码为<span class="number">200</span>但ajax请求进入error方法。</div><div class="line">	$.ajax(&#123;</div><div class="line">	<span class="attr">url</span> : <span class="string">"http:/www.baidu.com"</span>,</div><div class="line">	<span class="attr">data</span> : &#123;</div><div class="line">		<span class="attr">param</span> : <span class="string">"param"</span></div><div class="line">	&#125;</div><div class="line">	dataType : <span class="string">"json"</span>,</div><div class="line">	<span class="attr">success</span> : <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">		alert(<span class="string">"返回成功，进入成功方法"</span>);</div><div class="line">	&#125;</div><div class="line">	error : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		alert(<span class="string">"返回失败，进入失败方法"</span>)</div><div class="line">	&#125;		</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="检查思路"><a href="#检查思路" class="headerlink" title="检查思路:"></a>检查思路:</h3><p>1.查看后端日志，发现后端并未报错。<br>2.打开谷歌浏览器调试模式，发现状态吗为200。</p>
+<p>由此可推断出后台并为发生任何异常，判断并不是因为后端错误所导致。由此可以判断能够接触到返回数据并出现错误的只能是js部分。</p>
+<h3 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h3><p>查询资料后发现，对于ajax请求如果规定了返回值的格式（dataType），则返回值一定要符合dataType的格式。若返回的格式跟dataType的格式不相符，js会在解析的时候报错，由此进入了error的方法。后端以前返回值为”success”，将其改为{“isSuccess” : “success”}后进行返回，程序运行成功，进入ajax的success方法。<br>由此可见，若规定了dataType以后，后端返回的数据必须符合此格式，否则，前端js在解析的时候会发生错误。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jq</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/27/jqAjaxResError/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -297,11 +366,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -309,7 +386,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -318,10 +395,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jq</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
