@@ -133,6 +133,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-innerClass" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/28/innerClass/">java内部类实现原理以及注意事项</a>
+    </h1>
+  
+
+        
+        <a href="/2016/12/28/innerClass/" class="archive-article-date">
+  	<time datetime="2016-12-28T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-什么是内部类："><a href="#1-什么是内部类：" class="headerlink" title="1.什么是内部类："></a>1.什么是内部类：</h3><p>定义在某个类中的类叫做内部类。</p>
+<h3 id="2-内部类有什么好处："><a href="#2-内部类有什么好处：" class="headerlink" title="2.内部类有什么好处："></a>2.内部类有什么好处：</h3><p>1）内部类方法可以访问类定义所在的做哦用语中的数据，包括私有数据。<br>2）内部类可以对同一个包中的其他类隐藏起来。<br>3）当想要定义一个回调函数且又不想编写大量代码的时候，使用匿名内部类比较便捷。</p>
+<h3 id="3-内部类实现原理"><a href="#3-内部类实现原理" class="headerlink" title="3.内部类实现原理"></a>3.内部类实现原理</h3><h4 id="代码样例"><a href="#代码样例" class="headerlink" title="代码样例:"></a>代码样例:</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TalkingClock</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> interval;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> beep;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TalkingClock</span><span class="params">(<span class="keyword">int</span> interval, <span class="keyword">boolean</span> beep)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.interval = interval;</div><div class="line">        <span class="keyword">this</span>.beep = beep;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</div><div class="line">        ActionListener listener = <span class="keyword">new</span> TimePrinter();</div><div class="line">        Time t = <span class="keyword">new</span> Time(interval,listener);</div><div class="line">        t.start();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimePrinter</span> <span class="keyword">implements</span> <span class="title">ActionListener</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent event)</span> </span>&#123;</div><div class="line">            Date now = <span class="keyword">new</span> Date();</div><div class="line">            <span class="keyword">if</span>(beep) Toolkit.getDefaultToolkit().beep();</div><div class="line">        &#125; </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="解释"><a href="#解释" class="headerlink" title="解释:"></a>解释:</h4><p>首先，内部类是一种编译器现象，与java虚拟机无关。也就是说，在虚拟机中，类并不存在内部类一说。在上面两个类中，TimePrinterl类是TalkingClock的内部类，当java编译器对此两个类进行编译时，会将内部类TimePrinter编译为TalkingClock$TimePrinter，并在内部类中增加一条外部类的引用，以此来访问外部类对象中的域，并会修改其无参的构造方法为有参的构造方法（增加一个TalkingClock参数），对于外部类TalkingClock，会增加一个static boolean access$0(TalkingClock)方法，具体可以使用java -private innerClass.TalkingClock$TimePrinter(由于在linux等系统的shell中$为关键字，所以此时需要转义)查看。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TalkingClock</span>$<span class="title">TimePrinter</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> TalkingClock$TimePrinter(TalkingClock);</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(java.awt.event.ActionEvent)</span></span>;</div><div class="line">    <span class="keyword">final</span> TalkingClock <span class="keyword">this</span>$<span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TalkingClock</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> interval;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> beep;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TalkingClock</span><span class="params">(<span class="keyword">int</span> interval, <span class="keyword">boolean</span> beep)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">boolean</span> access$<span class="number">0</span>(TalkingClock);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由此，当内部类中需要访问外部类的私有成员时，内部类可以调用外部类的静态方法进行对私有成员的访问。当然，access$0并不是一个合法的java方法名，因此，在java层面调用此方法名并不现实。但可以用底层的其他方法进行对此方法的调用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ß/" class="article-tag-list-link color2">ß</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/28/innerClass/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-jqAjaxResError" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -362,11 +440,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -378,15 +456,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -398,7 +472,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
             
             <div class="clearfix"></div>
