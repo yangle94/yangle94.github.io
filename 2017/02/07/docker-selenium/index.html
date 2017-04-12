@@ -30,7 +30,7 @@
 对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
 <meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg">
 <meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png">
-<meta property="og:updated_time" content="2017-02-21T09:09:33.000Z">
+<meta property="og:updated_time" content="2017-04-12T02:45:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker化selenium grid">
 <meta name="twitter:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。
@@ -202,14 +202,15 @@
 <h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg" alt=""></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
 <p>在selenium grid的hub节点中自带了一个监控页面，用于监控每个节点的运行情况、ip端口信息，包括有多少任务在排队中当前总共有多少任务在运行等，此页面访问地址为selenium hub节点的4444端口。<br><img src="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png" alt=""></p>
 <h2 id="5-部署步骤"><a href="#5-部署步骤" class="headerlink" title="5 部署步骤"></a>5 部署步骤</h2><hr>
-<p>部署selenium hub<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 4444:4444 –name selenium-hub angley/selenium-hub:1.1</div></pre></td></tr></table></figure></p>
-<p>部署chrome<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -P -p 5900:5900 –link selenium-hub:hub –name chrome angley/node-</div><div class="line">chrome-debug:1.0</div></pre></td></tr></table></figure></p>
-<p>部署firefox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -P -p 5901:5900 –link selenium-hub:hub –name firefox angley/node-firefox-debug:1.0</div></pre></td></tr></table></figure></p>
+<p>部署selenium hub<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 4444:4444 –name registry.cn-hangzhou.aliyuncs.com/angle/selenium-hub:2.1</div></pre></td></tr></table></figure></p>
+<p>部署chrome<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -P -p 5900:5900 –link selenium-hub:hub –name chrome registry.cn-hangzhou.aliyuncs.com/angle/node-chrome-debug:2.1</div></pre></td></tr></table></figure></p>
+<p>部署firefox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -P -p 5901:5900 –link selenium-hub:hub –name firefox registry.cn-hangzhou.aliyuncs.com/angle/node-firefox-debug:2.1</div></pre></td></tr></table></figure></p>
 <p>部署IE<br>nodeconfig.json<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">“capabilities”:</div><div class="line">    [</div><div class="line">        &#123;</div><div class="line">            “browserName”: “internet explorer”,</div><div class="line">            “maxInstances”: 3,</div><div class="line">            “seleniumProtocol”: “WebDriver”</div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">“proxy”: “org.openqa.grid.selenium.proxy.DefaultRemoteProxy”,</div><div class="line">“maxSession”: 3,</div><div class="line">“port”: 5555,</div><div class="line">“register”: true,</div><div class="line">“registerCycle”: 5000,</div><div class="line">“hub”: “http://localhost:4444“,</div><div class="line">“nodeStatusCheckTimeout”: 5000,</div><div class="line">“nodePolling”: 5000,</div><div class="line">“role”: “node”,</div><div class="line">“unregisterIfStillDownAfter”: 60000,</div><div class="line">“downPollingLimit”: 2,</div><div class="line">“debug”: false,</div><div class="line">“servlets” : [],</div><div class="line">“withoutServlets”: [],</div><div class="line">“custom”: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>下载selenium-server-standalone-3.0.1.jar</p>
 <p>下载地址：<br><a href="https://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar" target="_blank" rel="external">https://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar</a></p>
 <p>部署命令<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone.jar -role node -nodeConfig nodeconfig.json</div></pre></td></tr></table></figure></p>
 <h3 id="6-已解决的问题"><a href="#6-已解决的问题" class="headerlink" title="6 已解决的问题"></a>6 已解决的问题</h3><p>我所用的原始Selenium Grid Docker镜像中有中文乱码问题，需要在docker file中加入字符集解决。<br>Selenium Grid中存在监控功能并不完善，若想要获取此类信息数据，需要加入自定义servlet（关于此章我会在另一片文章中介绍）</p>
+<h3 id="7-下载以及中文适配"><a href="#7-下载以及中文适配" class="headerlink" title="7 下载以及中文适配"></a>7 下载以及中文适配</h3><p>由于selenium官方的docker镜像对于中文兼容性不是很好，会出现某些中文乱码的问题，其实是因为其包含的乌班图镜像中缺少了部分字符集的原因，为了修复这个问题，我特意制作了修复了此问题的镜像并上传到了阿里云镜像服务器（代码中已经替换）。</p>
 
       
 
@@ -254,11 +255,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium Grid</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Selenium Grid</a>
         		</li>
       		
 		</ul>
@@ -465,7 +466,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,7 +474,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -485,10 +486,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
@@ -497,11 +494,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
               </li>
             
             <div class="clearfix"></div>
