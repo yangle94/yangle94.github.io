@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://yangle94.github.io/2017/03/01/SpringMVC-Annotation-RequestBody/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="@RequestBody注解的源码123456@Target(&amp;#123;ElementType.PARAMETER&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interface RequestBody &amp;#123;    boolean required() default true;&amp;#125; 由源码可见，@Req">
-<meta property="og:updated_time" content="2017-03-01T11:42:42.000Z">
+<meta property="og:updated_time" content="2017-06-15T04:47:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC_Annotation_@RequestBody">
 <meta name="twitter:description" content="@RequestBody注解的源码123456@Target(&amp;#123;ElementType.PARAMETER&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interface RequestBody &amp;#123;    boolean required() default true;&amp;#125; 由源码可见，@Req">
@@ -158,6 +158,7 @@
       
         <h2 id="RequestBody注解的源码"><a href="#RequestBody注解的源码" class="headerlink" title="@RequestBody注解的源码"></a>@RequestBody注解的源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER&#125;)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestBody &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>由源码可见，@RequestBody只有一个required属性，默认值为true，该注解会保留至.class文件中，利用反射可以进行查找。</p>
+<a id="more"></a>
 <h2 id="RequestBody的作用"><a href="#RequestBody的作用" class="headerlink" title="@RequestBody的作用"></a>@RequestBody的作用</h2><p>该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；</p>
 <p>它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。</p>
 <p>因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap<string, string="">里，这种情况在某些特殊需求下使用，详情查看FormHttpMessageConverter api;</string,></p>
@@ -311,7 +312,7 @@
     target: "cloud-tie-wrapper"
   };
 </script>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
   
@@ -346,7 +347,7 @@
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -420,15 +421,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -449,10 +450,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">

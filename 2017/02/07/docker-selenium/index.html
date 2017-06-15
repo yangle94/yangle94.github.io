@@ -17,7 +17,7 @@
 <meta property="og:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。 1 使用场景调研  完成某个功能的所有操作步骤在同一个页面、session中。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
 <meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg">
 <meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png">
-<meta property="og:updated_time" content="2017-04-12T02:45:43.000Z">
+<meta property="og:updated_time" content="2017-06-15T04:47:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker化selenium grid">
 <meta name="twitter:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。 1 使用场景调研  完成某个功能的所有操作步骤在同一个页面、session中。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
@@ -177,6 +177,7 @@
 <li><p>各个selenium节点对应的日志查看问题。</p>
 </li>
 </ol>
+<a id="more"></a>
 <h2 id="2-Docker化Selenium-Grid2还存在的问题"><a href="#2-Docker化Selenium-Grid2还存在的问题" class="headerlink" title="2 Docker化Selenium Grid2还存在的问题"></a>2 Docker化Selenium Grid2还存在的问题</h2><hr>
 <p>Windows对docker提供的镜像分别为nanoServer和windowsservercore，但其中并不存在GUI、IE等所需内容，查阅官方资料，官方人员说明目前项目并不支持GUI操作。详见<a href="https://blog.docker.com/2016/09/dockerforws2016/#comment-367168" target="_blank" rel="external">关于docker产品经理对于Windows GUI的说明</a>。 目前对于windows镜像需要人为的干预。目前我所采用的方式是为单独建立windows的虚拟机，在虚拟机上对重新部署selenium。<br>在对含有插件的页面进行访问时，需要提前将插件安装好，也就是说需要提前对docker file进行构建。</p>
 <h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg" alt=""></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
@@ -342,7 +343,7 @@
     target: "cloud-tie-wrapper"
   };
 </script>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
   
@@ -377,7 +378,7 @@
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -451,15 +452,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,10 +481,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">

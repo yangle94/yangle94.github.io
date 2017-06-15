@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://yangle94.github.io/2017/02/28/Java-transient/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。 transient的作用及使用方法 我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有">
-<meta property="og:updated_time" content="2017-02-28T14:39:36.000Z">
+<meta property="og:updated_time" content="2017-06-15T04:47:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java transient关键字使用记录">
 <meta name="twitter:description" content="今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。 transient的作用及使用方法 我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有">
@@ -160,6 +160,7 @@
 <h2 id="transient的作用及使用方法"><a href="#transient的作用及使用方法" class="headerlink" title="transient的作用及使用方法"></a>transient的作用及使用方法</h2><hr>
 <p>我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有某些属性我们并不想让它进行序列化，可以对此属性加上transient关键字，以后这个属性就不会再被进行序列化和反序列化。当然，这也成为它的局限性，因为没法让序列化、反序列化不同时进行。</p>
 <p>样例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String passwd;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPasswd</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> passwd;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String passwd)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.passwd = passwd;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="transient使用小结"><a href="#transient使用小结" class="headerlink" title="transient使用小结"></a>transient使用小结</h2><hr>
 <ol>
 <li>&emsp;&emsp;被transient修饰的变量，如果进行序列化：比如写入到文件中，则此变量就不能再被读取到，会被赋值为null</li>
@@ -317,7 +318,7 @@
     target: "cloud-tie-wrapper"
   };
 </script>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
   
@@ -352,7 +353,7 @@
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -426,15 +427,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -455,10 +456,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
