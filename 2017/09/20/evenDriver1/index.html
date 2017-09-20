@@ -6,19 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
-  <title>SpringMVC_Annotation_@RequestBody | Angle&#39;s blog</title>
+  <title>evenDriver1 | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="@RequestBody注解的源码123456@Target(&amp;#123;ElementType.PARAMETER&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interface RequestBody &amp;#123;    boolean required() default true;&amp;#125; 由源码可见，@Req">
-<meta name="keywords" content="SpringMVC">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SpringMVC_Annotation_@RequestBody">
-<meta property="og:url" content="https://yangle94.github.io/2017/03/01/SpringMVC-Annotation-RequestBody/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="evenDriver1">
+<meta property="og:url" content="https://yangle94.github.io/2017/09/20/evenDriver1/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
-<meta property="og:description" content="@RequestBody注解的源码123456@Target(&amp;#123;ElementType.PARAMETER&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interface RequestBody &amp;#123;    boolean required() default true;&amp;#125; 由源码可见，@Req">
-<meta property="og:updated_time" content="2017-06-15T04:47:00.000Z">
+<meta property="og:updated_time" content="2017-09-20T01:53:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringMVC_Annotation_@RequestBody">
-<meta name="twitter:description" content="@RequestBody注解的源码123456@Target(&amp;#123;ElementType.PARAMETER&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interface RequestBody &amp;#123;    boolean required() default true;&amp;#125; 由源码可见，@Req">
+<meta name="twitter:title" content="evenDriver1">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -136,36 +132,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SpringMVC-Annotation-RequestBody" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-evenDriver1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      SpringMVC_Annotation_@RequestBody
+      evenDriver1
     </h1>
   
 
         
-        <a href="/2017/03/01/SpringMVC-Annotation-RequestBody/" class="archive-article-date">
-  	<time datetime="2017-03-01T11:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
+        <a href="/2017/09/20/evenDriver1/" class="archive-article-date">
+  	<time datetime="2017-09-20T01:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="RequestBody注解的源码"><a href="#RequestBody注解的源码" class="headerlink" title="@RequestBody注解的源码"></a>@RequestBody注解的源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER&#125;)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestBody &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>由源码可见，@RequestBody只有一个required属性，默认值为true，该注解会保留至.class文件中，利用反射可以进行查找。</p>
-<a id="more"></a>
-<h2 id="RequestBody的作用"><a href="#RequestBody的作用" class="headerlink" title="@RequestBody的作用"></a>@RequestBody的作用</h2><p>该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；</p>
-<p>它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。</p>
-<p>因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap<string, string="">里，这种情况在某些特殊需求下使用，详情查看FormHttpMessageConverter api;</string,></p>
-<p>例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"sendMessage"</span>, method = RequestMethod.POST)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sendMesscage</span><span class="params">(@RequestBody UserIdCodeDTO userIdCodeMessageDTO)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> userIdCodeMessageDTO.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>运用次注解后，SprimgMVC将会把post或者get请求来的信息进行逆序列化，组成对象，前提是你传过来的值跟该对象匹配。</p>
-<h3 id="注意！！"><a href="#注意！！" class="headerlink" title="注意！！"></a>注意！！</h3><p>使用该注解以后，若想传送非json格式代码，需要指定请求头Content-Type为application/json，否则对象所有属性将为null。</p>
-
+        
       
 
       
@@ -204,17 +191,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -265,7 +241,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/03/01/SpringMVC-Annotation-RequestBody/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/09/20/evenDriver1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,18 +255,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/02/staticFactory/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          考虑用静态工厂方法替代构造函数
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/02/28/Java-transient/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java transient关键字使用记录</div>
+    <a href="/2017/05/26/creatHexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac下hexo建站</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -320,7 +287,7 @@
   
 
   
-  <div id="SOHUCS" sid="SpringMVC-Annotation-RequestBody" ></div> 
+  <div id="SOHUCS" sid="evenDriver1" ></div> 
 <script type="text/javascript"> 
 window.YiliaChangyanWrap = function() {
     var appid = "cytdVXdWU"; 
