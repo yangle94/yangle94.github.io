@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://yangle94.github.io/2017/09/26/springCloudUtil/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="忽略网络接口application.yml: 123456spring:  cloud:    inetutils:      ignoredInterfaces:        - docker0        - veth.* 代码位置:org.springframework.cloud.commons.util.InetUtilsProperties">
-<meta property="og:updated_time" content="2017-09-26T06:24:32.000Z">
+<meta property="og:updated_time" content="2017-09-26T07:22:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud记录点">
 <meta name="twitter:description" content="忽略网络接口application.yml: 123456spring:  cloud:    inetutils:      ignoredInterfaces:        - docker0        - veth.* 代码位置:org.springframework.cloud.commons.util.InetUtilsProperties">
@@ -167,6 +167,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> InetAddress <span class="title">findFirstNonLoopbackAddress</span><span class="params">()</span> </span>&#123;</div><div class="line">		InetAddress result = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="keyword">int</span> lowest = Integer.MAX_VALUE;</div><div class="line">			<span class="keyword">for</span> (Enumeration&lt;NetworkInterface&gt; nics = NetworkInterface</div><div class="line">					.getNetworkInterfaces(); nics.hasMoreElements();) &#123;</div><div class="line">				NetworkInterface ifc = nics.nextElement();</div><div class="line">				<span class="keyword">if</span> (ifc.isUp()) &#123;</div><div class="line">					log.trace(<span class="string">"Testing interface: "</span> + ifc.getDisplayName());</div><div class="line">					<span class="keyword">if</span> (ifc.getIndex() &lt; lowest || result == <span class="keyword">null</span>) &#123;</div><div class="line">						lowest = ifc.getIndex();</div><div class="line">					&#125;</div><div class="line">					<span class="keyword">else</span> <span class="keyword">if</span> (result != <span class="keyword">null</span>) &#123;</div><div class="line">						<span class="keyword">continue</span>;</div><div class="line">					&#125;</div><div class="line"></div><div class="line">					<span class="comment">// @formatter:off</span></div><div class="line">					<span class="keyword">if</span> (!ignoreInterface(ifc.getDisplayName())) &#123;</div><div class="line">						<span class="keyword">for</span> (Enumeration&lt;InetAddress&gt; addrs = ifc</div><div class="line">								.getInetAddresses(); addrs.hasMoreElements();) &#123;</div><div class="line">							InetAddress address = addrs.nextElement();</div><div class="line">							<span class="keyword">if</span> (address <span class="keyword">instanceof</span> Inet4Address</div><div class="line">									&amp;&amp; !address.isLoopbackAddress()</div><div class="line">									&amp;&amp; !ignoreAddress(address)) &#123;</div><div class="line">								log.trace(<span class="string">"Found non-loopback interface: "</span></div><div class="line">										+ ifc.getDisplayName());</div><div class="line">								result = address;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">					<span class="comment">// @formatter:on</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">catch</span> (IOException ex) &#123;</div><div class="line">			log.error(<span class="string">"Cannot get first non-loopback address"</span>, ex);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (result != <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span> result;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="keyword">return</span> InetAddress.getLocalHost();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">catch</span> (UnknownHostException e) &#123;</div><div class="line">			log.warn(<span class="string">"Unable to retrieve localhost"</span>);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
 <p>SpringCloud进行注册的时候会调用本地方法获得当前宿主机的网络信息，在*nix下（包括Mac），类似于ifconfig命令所显示的内容，会遍历其中的内容，所有网卡下到上，然后分别每个网卡内部的地址，保留最后一个非回环地址。</p>
 <p>我在当某台Linux机器（宿主机）安装了docker的时候，会安装一个docker0的网桥，docker0的网桥会在宿主机的第一个，导致在宿主机上运行的springboot（dubbo也会）会拿到错误的IP信息，当把docker0网卡加入到这个里头之后，就会避免这个问题。</p>
+<h3 id="强制使用正则表达式中的地址以及仅使用站点本地地址"><a href="#强制使用正则表达式中的地址以及仅使用站点本地地址" class="headerlink" title="强制使用正则表达式中的地址以及仅使用站点本地地址"></a>强制使用正则表达式中的地址以及仅使用站点本地地址</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">spring:</span></div><div class="line"><span class="attr">  cloud:</span></div><div class="line"><span class="attr">    inetutils:</span></div><div class="line"><span class="attr">      preferredNetworks:</span></div><div class="line"><span class="bullet">        -</span> <span class="number">192.168</span></div><div class="line"><span class="bullet">        -</span> <span class="number">10.0</span></div></pre></td></tr></table></figure>
+<p>此配置同样位于org.springframework.cloud.commons.util.InetUtilsProperties</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Use only interfaces with site local addresses. See &#123;<span class="doctag">@link</span> InetAddress#isSiteLocalAddress()&#125; for more details.</div><div class="line"> */</div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> useOnlySiteLocalInterfaces = <span class="keyword">false</span>;</div></pre></td></tr></table></figure>
+<p>查看参数使用位置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">ignoreAddress</span><span class="params">(InetAddress address)</span> </span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.properties.isUseOnlySiteLocalInterfaces() &amp;&amp; !address.isSiteLocalAddress()) &#123;</div><div class="line">			log.trace(<span class="string">"Ignoring address: "</span> + address.getHostAddress());</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div></pre></td></tr></table></figure>
+<p>由此可见，当不设置的时候，useOnlySiteLocalInterfaces默认值为false，不管拿到的是公网地址还是内网地址，直接进行对下面正则的匹配，当正则不匹配并且地址不是以regex开头的，会返回true（注意方法名是ignoreAddress，true表示忽略，false表示不忽略），如果不匹配则返回false；当useOnlySiteLocalInterfaces设置为true时，如果此IP地址不是内网地址，则直接返回true，如果是内网地址，则进行正则匹配。</p>
 
       
 
@@ -440,15 +446,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">even</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -460,15 +466,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jq</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
