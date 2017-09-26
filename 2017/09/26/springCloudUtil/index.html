@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://yangle94.github.io/2017/09/26/springCloudUtil/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="忽略网络接口application.yml: 123456spring:  cloud:    inetutils:      ignoredInterfaces:        - docker0        - veth.* 代码位置:org.springframework.cloud.commons.util.InetUtilsProperties">
-<meta property="og:updated_time" content="2017-09-26T07:22:32.000Z">
+<meta property="og:updated_time" content="2017-09-26T07:25:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud记录点">
 <meta name="twitter:description" content="忽略网络接口application.yml: 123456spring:  cloud:    inetutils:      ignoredInterfaces:        - docker0        - veth.* 代码位置:org.springframework.cloud.commons.util.InetUtilsProperties">
@@ -160,7 +160,7 @@
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">spring:</span></div><div class="line"><span class="attr">  cloud:</span></div><div class="line"><span class="attr">    inetutils:</span></div><div class="line"><span class="attr">      ignoredInterfaces:</span></div><div class="line"><span class="bullet">        -</span> docker0</div><div class="line"><span class="bullet">        -</span> veth.*</div></pre></td></tr></table></figure>
 <p>代码位置:<br>org.springframework.cloud.commons.util.InetUtilsProperties</p>
 <a id="more"></a>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * List of Java regex expressions for network addresses that will be preferred.</div><div class="line"> */</div><div class="line"><span class="keyword">private</span> List&lt;String&gt; preferredNetworks = <span class="keyword">new</span> ArrayList&lt;&gt;();</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * List of Java regex expressions for network addresses that will be 	 * preferred.</div><div class="line"> */</div><div class="line"><span class="keyword">private</span> List&lt;String&gt; preferredNetworks = <span class="keyword">new</span> ArrayList&lt;&gt;();</div></pre></td></tr></table></figure>
 <p>这个类是一个一个网络工具类的配置文件属性类，由注释可得，preferredNetworks承载了所有需要进行忽略的网络连接名的正则表达式。查看其使用位置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">ignoreInterface</span><span class="params">(String interfaceName)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (String regex : <span class="keyword">this</span>.properties.getIgnoredInterfaces()) &#123;</div><div class="line">			<span class="keyword">if</span> (interfaceName.matches(regex)) &#123;</div><div class="line">				log.trace(<span class="string">"Ignoring interface: "</span> + interfaceName);</div><div class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
 <p>查看ignoreInterface所调用的位置：</p>
@@ -462,10 +462,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
@@ -475,6 +471,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
