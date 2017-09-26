@@ -133,6 +133,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-springCloudUtil" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/26/springCloudUtil/">SpringCloud记录点</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/26/springCloudUtil/" class="archive-article-date">
+  	<time datetime="2017-09-26T03:32:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="忽略网络接口"><a href="#忽略网络接口" class="headerlink" title="忽略网络接口"></a>忽略网络接口</h3><p>application.yml:</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">spring:</span></div><div class="line"><span class="attr">  cloud:</span></div><div class="line"><span class="attr">    inetutils:</span></div><div class="line"><span class="attr">      ignoredInterfaces:</span></div><div class="line"><span class="bullet">        -</span> docker0</div><div class="line"><span class="bullet">        -</span> veth.*</div></pre></td></tr></table></figure>
+<p>代码位置:<br>org.springframework.cloud.commons.util.InetUtilsProperties</p>
+        
+          <a class="article-more-a" href="/2017/09/26/springCloudUtil/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/26/springCloudUtil/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-evenDriver1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -140,7 +218,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/20/evenDriver1/">evenDriver1</a>
+      <a class="article-title" href="/2017/09/20/evenDriver1/">自定义事件驱动</a>
     </h1>
   
 
@@ -161,6 +239,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">even</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -846,84 +935,6 @@
 
 
   
-    <article id="post-github-ssh-pxory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/25/github-ssh-pxory/">Mac上Github的ssh、http的代理</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/25/github-ssh-pxory/" class="archive-article-date">
-  	<time datetime="2017-02-25T08:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为我们身处天朝外加某堵墙的原因，访问Github实在是不稳定，SSH慢的要死，简直了。现在交给大家利用ShadowScoket进行对Github的加速。</p>
-<h2 id="购买一个VPN"><a href="#购买一个VPN" class="headerlink" title="购买一个VPN"></a>购买一个VPN</h2><p>随便什么VPN都好，我这里用的是TMDVPN，我自己用的也是这个，感觉还不错，也不是很贵，有想要的童鞋请给我发Email：1024920977@qq.com，我买的是50元半年，一个月20G流量，<a href="https://www.tmdvpn.cn/auth/register?code=PlMq479CNDyxOdjmFg" target="_blank" rel="external">附带邀请码的注册地址</a>。具体使用ShadowScoket的教程他们官网上都有。</p>
-<h2 id="设置Git的代理地址"><a href="#设置Git的代理地址" class="headerlink" title="设置Git的代理地址"></a>设置Git的代理地址</h2>
-        
-          <a class="article-more-a" href="/2017/02/25/github-ssh-pxory/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/25/github-ssh-pxory/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1041,7 +1052,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color5">even</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1049,7 +1060,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1058,10 +1081,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jq</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
