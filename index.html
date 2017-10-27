@@ -133,6 +133,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-makeSonarQube" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/27/makeSonarQube/">通过docker创建SonarQube代码质量检测平台</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/27/makeSonarQube/" class="archive-article-date">
+  	<time datetime="2017-10-27T02:13:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作为一个程序，想要写出更健壮的代码，一个好的代码检测工具是必不可少的。某天突然发现了一个代码检测平台工具SonarQube，想要安装一下，发现有docker版本的，特别来安利一下。</p>
+<h3 id="1-安装postgresql"><a href="#1-安装postgresql" class="headerlink" title="1. 安装postgresql"></a>1. 安装postgresql</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name postgresql <span class="_">-e</span> POSTGRES_USER=sonarqube <span class="_">-e</span> POSTGRES_PASSWORD=sonarqube <span class="_">-d</span> postgres</div></pre></td></tr></table></figure>
+<h3 id="2-安装sonarqube"><a href="#2-安装sonarqube" class="headerlink" title="2. 安装sonarqube"></a>2. 安装sonarqube</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name sq --link postgresql <span class="_">-e</span> SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonarqube <span class="_">-e</span> SONARQUBE_JDBC_USERNAME=sonarqube <span class="_">-e</span> SONARQUBE_JDBC_PASSWORD=sonarqube -p 9000:9000 <span class="_">-d</span> sonarqube</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/10/27/makeSonarQube/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker、SonarQube</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/27/makeSonarQube/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-springCloudUtil" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -852,89 +930,6 @@
 
 
   
-    <article id="post-Java-transient" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/28/Java-transient/">Java transient关键字使用记录</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/28/Java-transient/" class="archive-article-date">
-  	<time datetime="2017-02-28T14:01:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。</p>
-<h2 id="transient的作用及使用方法"><a href="#transient的作用及使用方法" class="headerlink" title="transient的作用及使用方法"></a>transient的作用及使用方法</h2><hr>
-<p>我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有某些属性我们并不想让它进行序列化，可以对此属性加上transient关键字，以后这个属性就不会再被进行序列化和反序列化。当然，这也成为它的局限性，因为没法让序列化、反序列化不同时进行。</p>
-<p>样例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String passwd;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPasswd</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> passwd;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String passwd)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.passwd = passwd;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2017/02/28/Java-transient/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FastJson</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/28/Java-transient/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1040,6 +1035,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">even</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
@@ -1056,7 +1055,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">even</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1064,7 +1063,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker、SonarQube</a>
               </li>
              
               <li class="article-tag-list-item">
