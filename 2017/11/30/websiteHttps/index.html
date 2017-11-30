@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
-  <title>maven上传文件到私库 | Angle&#39;s blog</title>
+  <title>使用docker、nginx、nginx-gen、letsencrypt个人主站升级https | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天因为在服务器端对webp进行格式转换，发现对于webp的jar在maven的仓库里并没有发现。于是只好自己把webp的jar加入了maven私服。将代码进行copy，以备不时之需。12345发布到本地仓库：mvn install:install-file -DgroupId=[groupId] -DartifactId=[artifactId] -Dversion=[version] -Dpa">
-<meta name="keywords" content="maven">
+  <meta name="description" content="准备工具 docker docker-compose nginx 镜像 jwilder/docker-gen 镜像 jrcs/letsencrypt-nginx-proxy-companion 镜像  执行操作">
+<meta name="keywords" content="Docker、Https、Nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="maven上传文件到私库">
-<meta property="og:url" content="https://yangle94.github.io/2017/03/08/maven-uploadJar/index.html">
+<meta property="og:title" content="使用docker、nginx、nginx-gen、letsencrypt个人主站升级https">
+<meta property="og:url" content="https://yangle94.github.io/2017/11/30/websiteHttps/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
-<meta property="og:description" content="今天因为在服务器端对webp进行格式转换，发现对于webp的jar在maven的仓库里并没有发现。于是只好自己把webp的jar加入了maven私服。将代码进行copy，以备不时之需。12345发布到本地仓库：mvn install:install-file -DgroupId=[groupId] -DartifactId=[artifactId] -Dversion=[version] -Dpa">
-<meta property="og:updated_time" content="2017-03-08T08:18:25.000Z">
+<meta property="og:description" content="准备工具 docker docker-compose nginx 镜像 jwilder/docker-gen 镜像 jrcs/letsencrypt-nginx-proxy-companion 镜像  执行操作">
+<meta property="og:updated_time" content="2017-11-30T02:41:58.929Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="maven上传文件到私库">
-<meta name="twitter:description" content="今天因为在服务器端对webp进行格式转换，发现对于webp的jar在maven的仓库里并没有发现。于是只好自己把webp的jar加入了maven私服。将代码进行copy，以备不时之需。12345发布到本地仓库：mvn install:install-file -DgroupId=[groupId] -DartifactId=[artifactId] -Dversion=[version] -Dpa">
+<meta name="twitter:title" content="使用docker、nginx、nginx-gen、letsencrypt个人主站升级https">
+<meta name="twitter:description" content="准备工具 docker docker-compose nginx 镜像 jwilder/docker-gen 镜像 jrcs/letsencrypt-nginx-proxy-companion 镜像  执行操作">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -136,27 +136,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-maven-uploadJar" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-websiteHttps" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      maven上传文件到私库
+      使用docker、nginx、nginx-gen、letsencrypt个人主站升级https
     </h1>
   
 
         
-        <a href="/2017/03/08/maven-uploadJar/" class="archive-article-date">
-  	<time datetime="2017-03-08T03:14:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-08</time>
+        <a href="/2017/11/30/websiteHttps/" class="archive-article-date">
+  	<time datetime="2017-11-30T01:25:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天因为在服务器端对webp进行格式转换，发现对于webp的jar在maven的仓库里并没有发现。于是只好自己把webp的jar加入了maven私服。将代码进行copy，以备不时之需。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">发布到本地仓库：</div><div class="line">mvn install:install-file -DgroupId=[groupId] -DartifactId=[artifactId] -Dversion=[version] -Dpackaging=jar -Dfile=[path to file]</div><div class="line"> </div><div class="line">发布到Nexus仓库：</div><div class="line">mvn deploy:deploy-file -DgroupId==[groupId] -DartifactId=[artifactId] -Dversion=[version] -Dpackaging=jar -Dfile=[path to file] -Durl=[url] -DrepositoryId=[id]</div></pre></td></tr></table></figure></p>
+        <h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><ol>
+<li>docker</li>
+<li>docker-compose</li>
+<li>nginx 镜像</li>
+<li>jwilder/docker-gen 镜像</li>
+<li>jrcs/letsencrypt-nginx-proxy-companion 镜像</li>
+</ol>
+<h2 id="执行操作"><a href="#执行操作" class="headerlink" title="执行操作"></a>执行操作</h2><a id="more"></a>
+<ol>
+<li>拷贝一份 .env.sample 并改名为.env</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cp .env.sample ./.env</div></pre></td></tr></table></figure>
+<ol>
+<li>修改.env文件的内容</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">NGINX_WEB=nginx-web #nginx的容器的名字</div><div class="line">DOCKER_GEN=nginx-gen #nginx-gen容器的名字</div><div class="line">LETS_ENCRYPT=nginx-letsencrypt #letsencrypt容器的名字</div><div class="line"></div><div class="line">IP=0.0.0.0 #公网IP名，（可以不用管，0.0.0.0就好）</div><div class="line"></div><div class="line"># Network name</div><div class="line">NETWORK=webproxy   #docker network的名字</div><div class="line"></div><div class="line"># NGINX file path</div><div class="line">NGINX_FILES_PATH=/path/to/your/nginx/data #三个容器共享路径</div></pre></td></tr></table></figure>
+<ol>
+<li>执行 run.sh</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">./run.sh 或者 sh run.sh</div></pre></td></tr></table></figure>
+<ol>
+<li>运行一个测试容器</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">执行一个http协议访问容器:</div><div class="line"></div><div class="line">docker run <span class="_">-d</span> <span class="_">-e</span> VIRTUAL_HOST=your.domain.com \</div><div class="line">          --network=webproxy \</div><div class="line">          --name my_app \</div><div class="line">          httpd:alpine</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">执行一个https协议访问容器:</div><div class="line"></div><div class="line">docker run <span class="_">-d</span> <span class="_">-e</span> VIRTUAL_HOST=your.domain.com \</div><div class="line">          <span class="_">-e</span> LETSENCRYPT_HOST=your.domain.com \</div><div class="line">          <span class="_">-e</span> LETSENCRYPT_EMAIL=your.email@your.domain.com \</div><div class="line">          <span class="_">-e</span> VIRTUAL_PORT=3000    <span class="comment">#设置监听端口</span></div><div class="line">          --network=webproxy \</div><div class="line">          --name my_app \</div><div class="line">          httpd:alpine</div></pre></td></tr></table></figure>
+<h5 id="此处，请务必把所有需要https代理的容器跟-nginx的三个容器放入同一个network中！"><a href="#此处，请务必把所有需要https代理的容器跟-nginx的三个容器放入同一个network中！" class="headerlink" title="此处，请务必把所有需要https代理的容器跟 nginx的三个容器放入同一个network中！"></a>此处，请务必把所有需要https代理的容器跟 nginx的三个容器放入同一个network中！</h5><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>1.jwilder/docker-gen镜像用来反向生成nginx配置文件，jrcs/letsencrypt-nginx-proxy-companion镜像用来根据生成的配置文件（域名）申请https证书，会自动进行检测，如果过期，自动申请新的https证书。</p>
+<p>2.如果要对新的docker镜像使用https，请务必带上LETSENCRYPT_HOST、 LETSENCRYPT_HOST、LETSENCRYPT_EMAIL这三个属性。</p>
 
       
 
@@ -201,7 +227,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Docker、Https、Nginx</a>
         		</li>
       		
 		</ul>
@@ -257,7 +283,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/03/08/maven-uploadJar/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://yangle94.github.io/2017/11/30/websiteHttps/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -271,18 +297,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/14/swagger-annotation/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          swagger-ui注解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/08/AutoCloseable-Interface/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">带有资源的try语句（AutoCloseable）</div>
+    <a href="/2017/10/27/makeSonarQube/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">通过docker创建SonarQube代码质量检测平台</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -312,7 +329,7 @@
   
 
   
-  <div id="SOHUCS" sid="maven-uploadJar" ></div> 
+  <div id="SOHUCS" sid="websiteHttps" ></div> 
 <script type="text/javascript"> 
 window.YiliaChangyanWrap = function() {
     var appid = "cytdVXdWU"; 
