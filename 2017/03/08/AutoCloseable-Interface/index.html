@@ -15,6 +15,7 @@
 <meta property="og:url" content="https://yangle94.github.io/2017/03/08/AutoCloseable-Interface/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="今天在关闭输入输出流的时候，觉得总是手动去关闭太麻烦，有没有什么简单的方法。于是乎发现了AutoCloseable这个接口。 重申一下为什么要手动关闭输入输出流对于平常的Java对象来说，如果Java的gc机制发现某个对象已经不可到达，就会启动对此对象的内存回收机制。当然，他什么时候能够把对象回收完了，是根据操作系统的调度来决定的，并不是说gc机制一起动，就能立刻回收此对象的内存。但是对于Inpu">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-03-08T08:17:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="带有资源的try语句（AutoCloseable）">
@@ -346,7 +347,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Angle
+    		&copy; 2018 Angle
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -450,10 +451,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">even</a>
               </li>
              
               <li class="article-tag-list-item">

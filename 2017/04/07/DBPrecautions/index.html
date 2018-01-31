@@ -15,6 +15,7 @@
 <meta property="og:url" content="https://yangle94.github.io/2017/04/07/DBPrecautions/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="一次数据库崩溃引发的思考 前两天，因为写业务，操作数据库，因为sql不当操作，导致了数据库的崩溃，特此将其拿出进行反思和思考。 起因:由于业务的原因，为了保留历史记录，所以我在删除的时候使用了delete_flag进行逻辑删除，所以，删除命令就变为了 12SELECT * FROM tableNmae WHERE delete_flag = 0       UPDATE SET delete_fl">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-06-15T04:47:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="业务操作数据库时的注意事项">
@@ -350,7 +351,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Angle
+    		&copy; 2018 Angle
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -454,10 +455,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">even</a>
               </li>
              
               <li class="article-tag-list-item">

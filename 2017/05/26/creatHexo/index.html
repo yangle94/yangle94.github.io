@@ -15,6 +15,7 @@
 <meta property="og:url" content="https://yangle94.github.io/2017/05/26/creatHexo/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="刚开始建站的时候说过写一篇建站教程，由于当时建站以后因为工作上的各种事儿给耽误了，以后就再也没工夫写了，今天特地来补上。  准备材料 GitHubPages仓库 Node.js homebrew hexo git(由于Mac自带了，就不需要了)">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-06-15T04:47:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下hexo建站">
@@ -167,7 +168,7 @@
 </ol>
 <hr>
 <a id="more"></a>
-<h3 id="github上创建GitHubPages仓库"><a href="#github上创建GitHubPages仓库" class="headerlink" title="github上创建GitHubPages仓库"></a>github上创建GitHubPages仓库</h3><p>git 官方参考地址: <a href="https://pages.github.com" target="_blank" rel="external">https://pages.github.com</a></p>
+<h3 id="github上创建GitHubPages仓库"><a href="#github上创建GitHubPages仓库" class="headerlink" title="github上创建GitHubPages仓库"></a>github上创建GitHubPages仓库</h3><p>git 官方参考地址: <a href="https://pages.github.com" target="_blank" rel="noopener">https://pages.github.com</a></p>
 <p>注意：</p>
 <ol>
 <li>创建仓库的时候仓库名一定严格按照 git用户名.github.io 来命名</li>
@@ -175,11 +176,11 @@
 </ol>
 <hr>
 <h3 id="安装-homebrew"><a href="#安装-homebrew" class="headerlink" title="安装 homebrew"></a>安装 homebrew</h3><p>homebrew是Mac下的软件管理程序，类似于centos的yum。</p>
-<p><a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">homebrew官方网站</a></p>
+<p><a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="noopener">homebrew官方网站</a></p>
 <p>下载安装方法、更换国内镜像源等详情请google，目前我在这里仅仅提供部分命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew update 更新brew列表</div><div class="line">brew search node.js    查询node.js（可以查看最新版本的node.js，然后brew install node7.js）</div></pre></td></tr></table></figure>
 <hr>
-<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><h4 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h4><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">hexo官方网站</a></p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><h4 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h4><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官方网站</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli 安装hexo客户端</div></pre></td></tr></table></figure>
 <h4 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h4><p>安装完成hexo后，执行建站命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo init &lt;你要存放的目录&gt;</div><div class="line"><span class="built_in">cd</span> &lt;你要存放的目录&gt;</div><div class="line">npm install</div></pre></td></tr></table></figure>
@@ -198,7 +199,7 @@ timezone    网站时区。Hexo 默认使用您电脑的时区。时区列表。
   type: git
   repository: git@github.com:yangle94/yangle94.github.io.git
   branch: master
-</code></pre><p>网址：<br>请把你刚才申请的githubpages的地址放到这里的url,例如我的是<a href="https://yangle94.github.io，" target="_blank" rel="external">https://yangle94.github.io，</a> 就把他放到url后。</p>
+</code></pre><p>网址：<br>请把你刚才申请的githubpages的地址放到这里的url,例如我的是<a href="https://yangle94.github.io，" target="_blank" rel="noopener">https://yangle94.github.io，</a> 就把他放到url后。</p>
 <pre><code>参数  描述  默认值
 url 网址  
 root    网站根目录   
@@ -330,11 +331,11 @@ permalink_defaults  永久链接中各部分的默认值
   
 <nav id="article-nav">
   
-    <a href="/2017/09/20/evenDriver1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/26/springCloudUtil/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          自定义事件驱动
+          SpringCloud记录点
         
       </div>
     </a>
@@ -394,7 +395,7 @@ permalink_defaults  永久链接中各部分的默认值
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Angle
+    		&copy; 2018 Angle
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -498,10 +499,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">even</a>
               </li>
              
               <li class="article-tag-list-item">
