@@ -134,6 +134,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jdk8-hashMap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/01/jdk8-hashMap/">HashMap(jdk8)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/01/jdk8-hashMap/" class="archive-article-date">
+  	<time datetime="2018-02-01T05:19:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="HashMap静态常量"><a href="#HashMap静态常量" class="headerlink" title="HashMap静态常量"></a>HashMap静态常量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">    * 默认table数组大小，必须是2的倍数</div><div class="line">    */</div><div class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>; <span class="comment">// aka 16</span></div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * table数组长度最大值，为2^30</div><div class="line">    */</div><div class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * 负载因子（默认）</div><div class="line">    */</div><div class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * 标识由链表转换为红黑树的阈值，只有当某一个链表大于等于此值的时候会把这个链表转换为红黑</div><div class="line">    * 树。这个数必须要大于2，默认值是8，当然也推荐从8开始往上的值。（查看源码后，发现如果</div><div class="line">    * table数组的长度小于MIN_TREEIFY_CAPACITY的值的时候，仅仅会进行扩容，并不会进行红黑</div><div class="line">    * 树转换，见HashMap#treeifyBin()方法）</div><div class="line">    */</div><div class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TREEIFY_THRESHOLD = <span class="number">8</span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * 标识有红黑树转换为链表的阈值，只有当某个某个红黑树小于等于这个值的时候，会把红黑树转换</div><div class="line">    * 为链表。具体方法为TreeNode#untreeify()</div><div class="line">    */</div><div class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNTREEIFY_THRESHOLD = <span class="number">6</span>;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * 限定table长度的最小值，当大于等于这个值的时候，将这个链表转换为红黑树；否则，仅仅进行</div><div class="line">    * 扩容。方法见HashMap#treeifyBin()</div><div class="line">    */</div><div class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_TREEIFY_CAPACITY = <span class="number">64</span>;</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/02/01/jdk8-hashMap/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java8</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">HashMap</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/01/jdk8-hashMap/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-wait" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -845,87 +925,6 @@
 
 
   
-    <article id="post-staticFactory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/staticFactory/">考虑用静态工厂方法替代构造函数</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/02/staticFactory/" class="archive-article-date">
-  	<time datetime="2017-03-02T14:04:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="静态工厂方法优点"><a href="#静态工厂方法优点" class="headerlink" title="静态工厂方法优点"></a>静态工厂方法优点</h2><ol>
-<li>静态工厂方法有名称，根据名称可以做到见文知意。对于构造方法而言，由于方法签名的原因，一个类只可能一种相同的方法签名，当然，可以通过参数顺序来克服这个问题，但是，相同参数容易让人混乱，而且有可能错过了编译器的异常。</li>
-<li>静态工厂方法可以不必每次调用它的时候都创建一个新的对象。</li>
-<li>可以返回原返回类型的任何子类型对象。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Service</span></span>&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Provider</span></span>&#123;</div><div class="line">    <span class="function">Service <span class="title">newService</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Service</span> </span>&#123;</div><div class="line">    <span class="comment">//不允许外部实例化</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Service</span><span class="params">()</span></span>&#123;&#125;;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String,Provider&gt; providers = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String defKey = <span class="string">"&lt;def&gt;"</span>;</div><div class="line"></div><div class="line">    <span class="comment">//注册</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(Provider provider)</span> </span>&#123;</div><div class="line">        registerProvider(defKey, provider);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(String name, Provider provider)</span> </span>&#123;</div><div class="line">        providers.put(name, provider);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//获取</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> newInstance(defkey);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        Provider p =  providers.get(name);</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == p) </div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IlleaglArgumentException(<span class="string">"No provider registered with name : "</span> + name);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> p.newService();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-        
-          <a class="article-more-a" href="/2017/03/02/staticFactory/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/02/staticFactory/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1060,6 +1059,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jq</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
               </li>
              
               <li class="article-tag-list-item">
