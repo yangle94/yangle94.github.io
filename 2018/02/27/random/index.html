@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yangle94.github.io">
   <title>random、ThreadLocalRandom、SecureRandom | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。 Random构造函数：12345678910111213141516171819202122232425262728293031323334//无参public Random() &amp;#">
+  <meta name="description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。">
 <meta name="keywords" content="JDK8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="random、ThreadLocalRandom、SecureRandom">
 <meta property="og:url" content="https://yangle94.github.io/2018/02/27/random/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
-<meta property="og:description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。 Random构造函数：12345678910111213141516171819202122232425262728293031323334//无参public Random() &amp;#">
+<meta property="og:description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-27T09:02:52.549Z">
+<meta property="og:updated_time" content="2018-02-27T14:04:09.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="random、ThreadLocalRandom、SecureRandom">
-<meta name="twitter:description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。 Random构造函数：12345678910111213141516171819202122232425262728293031323334//无参public Random() &amp;#">
+<meta name="twitter:description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -160,6 +160,7 @@
         <h3 id="Random"><a href="#Random" class="headerlink" title="Random"></a>Random</h3><p>Random可以算是我们常用的生成随机数的类，比如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Random random = <span class="keyword">new</span> Random();</div><div class="line"><span class="keyword">int</span> a = random.nextInt(<span class="number">5</span>);</div></pre></td></tr></table></figure>
 <p>这样会生成一个0~4之间的数字。</p>
+<a id="more"></a>
 <h4 id="Random构造函数："><a href="#Random构造函数：" class="headerlink" title="Random构造函数："></a>Random构造函数：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//无参</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Random</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>(seedUniquifier() ^ System.nanoTime());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">seedUniquifier</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// L'Ecuyer, "Tables of Linear Congruential Generators of</span></div><div class="line">    <span class="comment">// Different Sizes and Good Lattice Structure", 1999</span></div><div class="line">    <span class="keyword">for</span> (;;) &#123;</div><div class="line">        <span class="keyword">long</span> current = seedUniquifier.get();</div><div class="line">        <span class="keyword">long</span> next = current * <span class="number">181783497276652981L</span>;</div><div class="line">        <span class="keyword">if</span> (seedUniquifier.compareAndSet(current, next))</div><div class="line">            <span class="keyword">return</span> next;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> AtomicLong seedUniquifier</div><div class="line">    = <span class="keyword">new</span> AtomicLong(<span class="number">8682522807148012L</span>);</div><div class="line"></div><div class="line"><span class="comment">//有参</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Random</span><span class="params">(<span class="keyword">long</span> seed)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (getClass() == Random.class)</div><div class="line">        <span class="keyword">this</span>.seed = <span class="keyword">new</span> AtomicLong(initialScramble(seed));</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// subclass might have overriden setSeed</span></div><div class="line">        <span class="keyword">this</span>.seed = <span class="keyword">new</span> AtomicLong();</div><div class="line">        setSeed(seed);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">initialScramble</span><span class="params">(<span class="keyword">long</span> seed)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (seed ^ multiplier) &amp; mask;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>构造方法主要的作用是生成一个AtomicLong类型的seed，作为实例属性。</p>
 <h3 id="nextInt"><a href="#nextInt" class="headerlink" title="nextInt()"></a>nextInt()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextInt</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> next(<span class="number">32</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextInt</span><span class="params">(<span class="keyword">int</span> bound)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (bound &lt;= <span class="number">0</span>)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(BadBound);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> r = next(<span class="number">31</span>);</div><div class="line">    <span class="keyword">int</span> m = bound - <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span> ((bound &amp; m) == <span class="number">0</span>)  <span class="comment">// i.e., bound is a power of 2</span></div><div class="line">        r = (<span class="keyword">int</span>)((bound * (<span class="keyword">long</span>)r) &gt;&gt; <span class="number">31</span>);</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> u = r;</div><div class="line">             u - (r = u % bound) + m &lt; <span class="number">0</span>;</div><div class="line">             u = next(<span class="number">31</span>))</div><div class="line">            ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> r;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">next</span><span class="params">(<span class="keyword">int</span> bits)</span> </span>&#123;</div><div class="line">    <span class="keyword">long</span> oldseed, nextseed;</div><div class="line">    AtomicLong seed = <span class="keyword">this</span>.seed;</div><div class="line">    <span class="keyword">do</span> &#123;</div><div class="line">        oldseed = seed.get();</div><div class="line">        nextseed = (oldseed * multiplier + addend) &amp; mask;</div><div class="line">    &#125; <span class="keyword">while</span> (!seed.compareAndSet(oldseed, nextseed));</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(nextseed &gt;&gt;&gt; (<span class="number">48</span> - bits));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -458,6 +459,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
               </li>
              
@@ -466,7 +471,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,15 +483,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker、SonarQube</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,11 +495,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
