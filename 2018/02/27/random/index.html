@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
-  <title>Archives: 2017/4 | Angle&#39;s blog</title>
+  <title>random、ThreadLocalRandom、SecureRandom | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Angle&#39;s blog">
-<meta property="og:url" content="https://yangle94.github.io/archives/2017/04/index.html">
+  <meta name="description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。 Random构造函数：12345678910111213141516171819202122232425262728293031323334//无参public Random() &amp;#">
+<meta name="keywords" content="JDK8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="random、ThreadLocalRandom、SecureRandom">
+<meta property="og:url" content="https://yangle94.github.io/2018/02/27/random/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
+<meta property="og:description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。 Random构造函数：12345678910111213141516171819202122232425262728293031323334//无参public Random() &amp;#">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-27T09:02:52.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angle&#39;s blog">
+<meta name="twitter:title" content="random、ThreadLocalRandom、SecureRandom">
+<meta name="twitter:description" content="RandomRandom可以算是我们常用的生成随机数的类，比如 123Random random = new Random();int a = random.nextInt(5); 这样会生成一个0~4之间的数字。 Random构造函数：12345678910111213141516171819202122232425262728293031323334//无参public Random() &amp;#">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -132,64 +137,207 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-random" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/07/DBPrecautions/" class="archive-article-date">
-  	<time datetime="2017-04-07T02:32:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/07/DBPrecautions/">业务操作数据库时的注意事项</a>
+    <h1 class="article-title" itemprop="name">
+      random、ThreadLocalRandom、SecureRandom
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/02/27/random/" class="archive-article-date">
+  	<time datetime="2018-02-27T08:06:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Random"><a href="#Random" class="headerlink" title="Random"></a>Random</h3><p>Random可以算是我们常用的生成随机数的类，比如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Random random = <span class="keyword">new</span> Random();</div><div class="line"><span class="keyword">int</span> a = random.nextInt(<span class="number">5</span>);</div></pre></td></tr></table></figure>
+<p>这样会生成一个0~4之间的数字。</p>
+<h4 id="Random构造函数："><a href="#Random构造函数：" class="headerlink" title="Random构造函数："></a>Random构造函数：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//无参</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Random</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>(seedUniquifier() ^ System.nanoTime());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">seedUniquifier</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// L'Ecuyer, "Tables of Linear Congruential Generators of</span></div><div class="line">    <span class="comment">// Different Sizes and Good Lattice Structure", 1999</span></div><div class="line">    <span class="keyword">for</span> (;;) &#123;</div><div class="line">        <span class="keyword">long</span> current = seedUniquifier.get();</div><div class="line">        <span class="keyword">long</span> next = current * <span class="number">181783497276652981L</span>;</div><div class="line">        <span class="keyword">if</span> (seedUniquifier.compareAndSet(current, next))</div><div class="line">            <span class="keyword">return</span> next;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> AtomicLong seedUniquifier</div><div class="line">    = <span class="keyword">new</span> AtomicLong(<span class="number">8682522807148012L</span>);</div><div class="line"></div><div class="line"><span class="comment">//有参</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Random</span><span class="params">(<span class="keyword">long</span> seed)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (getClass() == Random.class)</div><div class="line">        <span class="keyword">this</span>.seed = <span class="keyword">new</span> AtomicLong(initialScramble(seed));</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// subclass might have overriden setSeed</span></div><div class="line">        <span class="keyword">this</span>.seed = <span class="keyword">new</span> AtomicLong();</div><div class="line">        setSeed(seed);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">initialScramble</span><span class="params">(<span class="keyword">long</span> seed)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (seed ^ multiplier) &amp; mask;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>构造方法主要的作用是生成一个AtomicLong类型的seed，作为实例属性。</p>
+<h3 id="nextInt"><a href="#nextInt" class="headerlink" title="nextInt()"></a>nextInt()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextInt</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> next(<span class="number">32</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextInt</span><span class="params">(<span class="keyword">int</span> bound)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (bound &lt;= <span class="number">0</span>)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(BadBound);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> r = next(<span class="number">31</span>);</div><div class="line">    <span class="keyword">int</span> m = bound - <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span> ((bound &amp; m) == <span class="number">0</span>)  <span class="comment">// i.e., bound is a power of 2</span></div><div class="line">        r = (<span class="keyword">int</span>)((bound * (<span class="keyword">long</span>)r) &gt;&gt; <span class="number">31</span>);</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> u = r;</div><div class="line">             u - (r = u % bound) + m &lt; <span class="number">0</span>;</div><div class="line">             u = next(<span class="number">31</span>))</div><div class="line">            ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> r;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">next</span><span class="params">(<span class="keyword">int</span> bits)</span> </span>&#123;</div><div class="line">    <span class="keyword">long</span> oldseed, nextseed;</div><div class="line">    AtomicLong seed = <span class="keyword">this</span>.seed;</div><div class="line">    <span class="keyword">do</span> &#123;</div><div class="line">        oldseed = seed.get();</div><div class="line">        nextseed = (oldseed * multiplier + addend) &amp; mask;</div><div class="line">    &#125; <span class="keyword">while</span> (!seed.compareAndSet(oldseed, nextseed));</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(nextseed &gt;&gt;&gt; (<span class="number">48</span> - bits));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们主要看next()方法，nextseed的计算方式是固定的（(oldseed * multiplier + addend) &amp; mask），所以next的返回结果是可计算的，计算得到nextseed后，使用compareAndSet方法将nextseed赋值到seed属性中（cas操作），如果成功，则返回(int)(nextseed &gt;&gt;&gt; (48 - bits))，否则，重新获得oldseed并进行计算。所以，next方法返回值是可预测、有迹可循的，生成的结果是伪随机数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Random random = <span class="keyword">new</span> Random(<span class="number">1</span>);</div><div class="line"><span class="keyword">int</span> a = random.nextInt(<span class="number">5</span>);</div><div class="line">random = <span class="keyword">new</span> Random(<span class="number">1</span>);</div><div class="line"><span class="keyword">int</span> b = random.nextInt(<span class="number">5</span>);</div><div class="line">random = <span class="keyword">new</span> Random(<span class="number">1</span>);</div><div class="line"><span class="keyword">int</span> c = random.nextInt(<span class="number">5</span>);</div></pre></td></tr></table></figure>
+<p>可以判断，以上代码中 a = b = c。</p>
+<p>所以我们一定不能把这个种子写死，用当前时间毫秒数，还是比较好些。另外，重复new Random对象的意义也并不是那么大。</p>
+<p>最后说一点，Random是线程安全的，去这里的官方文档可以看到，“Instances of java.util.Random are threadsafe.”。但是在多线程的表现中，他的性能很差。</p>
+<h3 id="ThreadLocalRandom"><a href="#ThreadLocalRandom" class="headerlink" title="ThreadLocalRandom"></a>ThreadLocalRandom</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextInt</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> mix32(nextSeed());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">long</span> <span class="title">nextSeed</span><span class="params">()</span> </span>&#123;</div><div class="line">    Thread t; <span class="keyword">long</span> r; <span class="comment">// read and update per-thread seed</span></div><div class="line">    UNSAFE.putLong(t = Thread.currentThread(), SEED,</div><div class="line">                   r = UNSAFE.getLong(t, SEED) + GAMMA);</div><div class="line">    <span class="keyword">return</span> r;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">mix32</span><span class="params">(<span class="keyword">long</span> z)</span> </span>&#123;</div><div class="line">    z = (z ^ (z &gt;&gt;&gt; <span class="number">33</span>)) * <span class="number">0xff51afd7ed558ccdL</span>;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(((z ^ (z &gt;&gt;&gt; <span class="number">33</span>)) * <span class="number">0xc4ceb9fe1a85ec53L</span>) &gt;&gt;&gt; <span class="number">32</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> GAMMA = <span class="number">0x9e3779b97f4a7c15L</span>;</div></pre></td></tr></table></figure>
+<p>在查看ThreadLocalRandom类，nextInt方法主要是查找了当前线程中threadLocalRandomSeed属性的值，每次增加一个GAMMA，再将值重新放入线程中，然后调用mix32进行处理。由于ThreadLocalRandom并未大量使用cas，所以ThreadLocalRandom比Random更快。</p>
+<h3 id="SecureRandom"><a href="#SecureRandom" class="headerlink" title="SecureRandom"></a>SecureRandom</h3><p>在需要频繁生成随机数，或者安全要求较高的时候，不要使用Random，因为Random是可预测的。</p>
+<p>This class provides a cryptographically strong random number generator (RNG).<br>SecureRandom 提供加密的强随机数生成器 (RNG)，要求种子必须是不可预知的，产生非确定性输出。<br>SecureRandom 也提供了与实现无关的算法，因此，调用方（应用程序代码）会请求特定的 RNG 算法并将它传回到该算法的 SecureRandom 对象中。</p>
+<p>如果仅指定算法名称，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">SecureRandom random = SecureRandom.getInstance(<span class="string">"SHA1PRNG"</span>);</div></pre></td></tr></table></figure>
+<p>如果既指定了算法名称又指定了包提供程序，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">SecureRandom random = SecureRandom.getInstance(<span class="string">"SHA1PRNG"</span>, <span class="string">"SUN"</span>);</div></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">SecureRandom random1 = SecureRandom.getInstance(<span class="string">"SHA1PRNG"</span>);</div><div class="line">SecureRandom random2 = SecureRandom.getInstance(<span class="string">"SHA1PRNG"</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">    System.out.println(random1.nextInt() + <span class="string">" != "</span> + random2.nextInt());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiivgasq3.bkt.clouddn.com/B0088D76BF6773FB6A8D860804BD646F.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiivgasq3.bkt.clouddn.com/FC5682D4A8E689A59B9D063A73F75585.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AutoCloseable</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDK8</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yangle94.github.io/2018/02/27/random/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/02/26/jdk8-ConcurrentHashMap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ConcurrentHashMap(JDK8)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="random" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytdVXdWU",
+        conf: "prod_e10c3d98c7ba6ab05d8b9cd305f60f62"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -212,8 +360,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

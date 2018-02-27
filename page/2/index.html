@@ -134,6 +134,165 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-maven-uploadJar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/08/maven-uploadJar/">maven上传文件到私库</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/08/maven-uploadJar/" class="archive-article-date">
+  	<time datetime="2017-03-08T03:14:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天因为在服务器端对webp进行格式转换，发现对于webp的jar在maven的仓库里并没有发现。于是只好自己把webp的jar加入了maven私服。将代码进行copy，以备不时之需。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">发布到本地仓库：</div><div class="line">mvn install:install-file -DgroupId=[groupId] -DartifactId=[artifactId] -Dversion=[version] -Dpackaging=jar -Dfile=[path to file]</div><div class="line"> </div><div class="line">发布到Nexus仓库：</div><div class="line">mvn deploy:deploy-file -DgroupId==[groupId] -DartifactId=[artifactId] -Dversion=[version] -Dpackaging=jar -Dfile=[path to file] -Durl=[url] -DrepositoryId=[id]</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/08/maven-uploadJar/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-AutoCloseable-Interface" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/08/AutoCloseable-Interface/">带有资源的try语句（AutoCloseable）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/08/AutoCloseable-Interface/" class="archive-article-date">
+  	<time datetime="2017-03-08T01:45:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在关闭输入输出流的时候，觉得总是手动去关闭太麻烦，有没有什么简单的方法。于是乎发现了AutoCloseable这个接口。</p>
+<h2 id="重申一下为什么要手动关闭输入输出流"><a href="#重申一下为什么要手动关闭输入输出流" class="headerlink" title="重申一下为什么要手动关闭输入输出流"></a>重申一下为什么要手动关闭输入输出流</h2><p>对于平常的Java对象来说，如果Java的gc机制发现某个对象已经不可到达，就会启动对此对象的内存回收机制。当然，他什么时候能够把对象回收完了，是根据操作系统的调度来决定的，并不是说gc机制一起动，就能立刻回收此对象的内存。但是对于InputStream和OutputStream以及他们的子类来说，如果开启了某个流，就会有操作系统之外的资源依附在某个Java对象上，这就导致gc认为其实活着的，而不是死亡的，所以并不能出发gc机制。</p>
+<h2 id="AutoCloseable接口"><a href="#AutoCloseable接口" class="headerlink" title="AutoCloseable接口"></a>AutoCloseable接口</h2><p>在Java1.7中提供了新的AutoCloseable接口，以前的Closeable接口扩展了AutoCloseable接口，也就是说，所有的实现了Closeable接口的输入输出流全部实现了AutoCloseable接口，就是说所有的输入输出流都能进行带资源的try catch语句。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReaderTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span>(BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(        </div><div class="line">                <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"/home/angle/test.webp"</span>)),<span class="string">"UTF8"</span>),<span class="number">1024</span>))&#123;</div><div class="line">            System.out.println(reader.readLine());    <span class="comment">//这里直接读一行</span></div><div class="line">        &#125;<span class="keyword">catch</span>(IOException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时，就不需要我们自己手动去关闭输入、输出流了，带资源的try块儿会帮我们把资源管理好。</p>
+<h2 id="注：关于带资源的try语句的3个关键点："><a href="#注：关于带资源的try语句的3个关键点：" class="headerlink" title="注：关于带资源的try语句的3个关键点："></a>注：关于带资源的try语句的3个关键点：</h2><p>由带资源的try语句管理的资源必须是实现了AutoCloseable接口的类的对象。</p>
+<p>在try代码中声明的资源被隐式声明为fianl。</p>
+<p>通过使用分号分隔每个声明可以管理多个资源。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AutoCloseable</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/08/AutoCloseable-Interface/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-staticFactory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -808,84 +967,9 @@
 
 
   
-    <article id="post-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/25/index/">开博了～</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/25/index/" class="archive-article-date">
-  	<time datetime="2016-12-25T07:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>哈哈，功夫不负有心人，终于在github page上开了自己的博客，顿时兴奋无比。</p>
-<p>本站主要是用在我个人写的一些程序中遇到的问题。本人初出茅庐，希望大家能够不吝赐教。本次仅仅是为了测试搭成的框架是否可以运行，稍后会写一个博客的搭建教程。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/25/index/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1008,6 +1092,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
@@ -1020,11 +1112,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1032,15 +1120,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+                <a href="javascript:void(0)" class="js-tag color5">JDK8</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
