@@ -134,6 +134,74 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-String" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/28/String/">String</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/28/String/" class="archive-article-date">
+  	<time datetime="2018-02-28T05:48:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天遇到了一个很有意思的关于String的问题，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">String a = <span class="string">"hello2"</span>;</div><div class="line"><span class="keyword">final</span> String b = <span class="string">"hello"</span>;</div><div class="line">String d = <span class="string">"hello"</span>;</div><div class="line">String c = b + <span class="number">2</span>;</div><div class="line">String e = d + <span class="number">2</span>;</div><div class="line"></div><div class="line">System.out.println(<span class="string">"c:"</span>: c);</div><div class="line">System.out.println(<span class="string">"e:"</span>: e);</div><div class="line">System.out.println(a == c);</div><div class="line">System.out.println(a == e);</div></pre></td></tr></table></figure>
+<p>首先，因为编译器在编译的时候发现，String b是一个常量（final修饰，当然，虚拟机内部是没有final这个修饰符的，会在编译期将代码中的final擦除），相对应的再生成c的时候会直接计算结果，然后将结果（“hello2”）赋值给c，所以，如果反编译（我这里直接使用idea打开生成的class文件）会发现，生成的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">String a = <span class="string">"hello2"</span>;</div><div class="line">String b = <span class="string">"hello"</span>;</div><div class="line">String d = <span class="string">"hello"</span>;</div><div class="line">String c = <span class="string">"hello2"</span>;</div><div class="line">String e = d + <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">StringBuilder</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// Create a copy, don't share the array</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(value, <span class="number">0</span>, count);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>当然，使用javap反编译后能够看到，String e = d + 2;这里在class文件中，会使用StringBuilder来负责将d与2进行相加（append()），最后，会调用toString方法，然后将结果赋给e。所以，a与c全部指向常量池的“hello2”，而由于StringBuilder的toString方法会在堆中new一个新的String对象，所以a 与 e是不相等的（内存地址不同）。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/28/String/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-random" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -845,85 +913,6 @@
 
 
   
-    <article id="post-swagger-annotation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/14/swagger-annotation/">swagger-ui注解</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/14/swagger-annotation/" class="archive-article-date">
-  	<time datetime="2017-03-14T02:30:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。</p>
-<h2 id="注解列表"><a href="#注解列表" class="headerlink" title="注解列表"></a>注解列表</h2><h3 id="Api"><a href="#Api" class="headerlink" title="@Api"></a>@Api</h3><p>用在类上，说明该类的作用</p>
-<h3 id="ApiOperation"><a href="#ApiOperation" class="headerlink" title="@ApiOperation"></a>@ApiOperation</h3><p>用在方法上，说明方法的作用(当方法所需参数为对象时，)</p>
-<h3 id="ApiImplicitParams、-ApiImplicitParam"><a href="#ApiImplicitParams、-ApiImplicitParam" class="headerlink" title="@ApiImplicitParams、@ApiImplicitParam"></a>@ApiImplicitParams、@ApiImplicitParam</h3><p>@ApiImplicitParams({<br>    @ApiImplicitParam<br>})<br>用在@ApiImplicitParams注解中，指定一个请求参数的各个方面<br>paramType:<br>参数放在哪个地方<br>&gt;<br>header–&gt;请求参数的获取：@RequestHeader<br>query–&gt;请求参数的获取：@RequestParam<br>path（用于restful接口）–&gt;请求参数的获取：@PathVariable<br>body（不常用）<br>form（不常用）<br>name：参数名<br>dataType：参数类型<br>required：参数是否必须传<br>value：参数的意思<br>defaultValue：参数的默认值</p>
-        
-          <a class="article-more-a" href="/2017/03/14/swagger-annotation/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">swagger-ui</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/14/swagger-annotation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1061,15 +1050,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jq</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
               </li>
              
               <li class="article-tag-list-item">
