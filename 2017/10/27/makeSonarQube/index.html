@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="作为一个程序，想要写出更健壮的代码，一个好的代码检测工具是必不可少的。某天突然发现了一个代码检测平台工具SonarQube，想要安装一下，发现有docker版本的，特别来安利一下。 1. 安装postgresql1docker run --name postgresql -e POSTGRES_USER=sonarqube -e POSTGRES_PASSWORD=sonarqube -d pos">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/872419-20170110180805072-1652845285.png">
-<meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/872419-20170110181014853-90947023.png">
-<meta property="og:updated_time" content="2017-10-27T03:25:05.000Z">
+<meta property="og:image" content="http://img.ylapl.cn/872419-20170110180805072-1652845285.png">
+<meta property="og:image" content="http://img.ylapl.cn/872419-20170110181014853-90947023.png">
+<meta property="og:updated_time" content="2018-11-06T07:19:04.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过docker创建SonarQube代码质量检测平台">
 <meta name="twitter:description" content="作为一个程序，想要写出更健壮的代码，一个好的代码检测工具是必不可少的。某天突然发现了一个代码检测平台工具SonarQube，想要安装一下，发现有docker版本的，特别来安利一下。 1. 安装postgresql1docker run --name postgresql -e POSTGRES_USER=sonarqube -e POSTGRES_PASSWORD=sonarqube -d pos">
-<meta name="twitter:image" content="http://oiivgasq3.bkt.clouddn.com/872419-20170110180805072-1652845285.png">
+<meta name="twitter:image" content="http://img.ylapl.cn/872419-20170110180805072-1652845285.png">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -161,13 +161,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>作为一个程序，想要写出更健壮的代码，一个好的代码检测工具是必不可少的。某天突然发现了一个代码检测平台工具SonarQube，想要安装一下，发现有docker版本的，特别来安利一下。</p>
-<h3 id="1-安装postgresql"><a href="#1-安装postgresql" class="headerlink" title="1. 安装postgresql"></a>1. 安装postgresql</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name postgresql <span class="_">-e</span> POSTGRES_USER=sonarqube <span class="_">-e</span> POSTGRES_PASSWORD=sonarqube <span class="_">-d</span> postgres</div></pre></td></tr></table></figure>
-<h3 id="2-安装sonarqube"><a href="#2-安装sonarqube" class="headerlink" title="2. 安装sonarqube"></a>2. 安装sonarqube</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name sq --link postgresql <span class="_">-e</span> SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonarqube <span class="_">-e</span> SONARQUBE_JDBC_USERNAME=sonarqube <span class="_">-e</span> SONARQUBE_JDBC_PASSWORD=sonarqube -p 9000:9000 <span class="_">-d</span> sonarqube</div></pre></td></tr></table></figure>
+<h3 id="1-安装postgresql"><a href="#1-安装postgresql" class="headerlink" title="1. 安装postgresql"></a>1. 安装postgresql</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name postgresql -e POSTGRES_USER=sonarqube -e POSTGRES_PASSWORD=sonarqube -d postgres</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装sonarqube"><a href="#2-安装sonarqube" class="headerlink" title="2. 安装sonarqube"></a>2. 安装sonarqube</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name sq --link postgresql -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonarqube -e SONARQUBE_JDBC_USERNAME=sonarqube -e SONARQUBE_JDBC_PASSWORD=sonarqube -p 9000:9000 -d sonarqube</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="3-平台搭建完成"><a href="#3-平台搭建完成" class="headerlink" title="3. 平台搭建完成"></a>3. 平台搭建完成</h3><ol>
 <li>打开 <a href="http://localhost:9000/" target="_blank" rel="noopener">localhost:9000</a>，进行登录，（初始账户为admin,admin），登录成功后会有教程弹出。</li>
 </ol>
-<p>2.汉化：<br>    <img src="http://oiivgasq3.bkt.clouddn.com/872419-20170110180805072-1652845285.png" alt="汉化图片"><br>    <img src="http://oiivgasq3.bkt.clouddn.com/872419-20170110181014853-90947023.png" alt="汉化图片"></p>
+<p>2.汉化：<br>    <img src="http://img.ylapl.cn/872419-20170110180805072-1652845285.png" alt="汉化图片"><br>    <img src="http://img.ylapl.cn/872419-20170110181014853-90947023.png" alt="汉化图片"></p>
 <h3 id="4-附上链接"><a href="#4-附上链接" class="headerlink" title="4 附上链接"></a>4 附上链接</h3><p><a href="https://hub.docker.com/_/sonarqube/" target="_blank" rel="noopener">sonarqube docker hub地址</a><br><a href="http://spring4all.com/article/169" target="_blank" rel="noopener">spring4all 教程地址</a><br><a href="http://www.cnblogs.com/parryyang/p/6270402.html" target="_blank" rel="noopener">汉化参考</a></p>
 
       
@@ -454,19 +454,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">

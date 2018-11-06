@@ -157,13 +157,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="RequestBody注解的源码"><a href="#RequestBody注解的源码" class="headerlink" title="@RequestBody注解的源码"></a>@RequestBody注解的源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER&#125;)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestBody &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h2 id="RequestBody注解的源码"><a href="#RequestBody注解的源码" class="headerlink" title="@RequestBody注解的源码"></a>@RequestBody注解的源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestBody &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由源码可见，@RequestBody只有一个required属性，默认值为true，该注解会保留至.class文件中，利用反射可以进行查找。</p>
 <a id="more"></a>
 <h2 id="RequestBody的作用"><a href="#RequestBody的作用" class="headerlink" title="@RequestBody的作用"></a>@RequestBody的作用</h2><p>该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；</p>
 <p>它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。</p>
 <p>因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap<string, string="">里，这种情况在某些特殊需求下使用，详情查看FormHttpMessageConverter api;</string,></p>
-<p>例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"sendMessage"</span>, method = RequestMethod.POST)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sendMesscage</span><span class="params">(@RequestBody UserIdCodeDTO userIdCodeMessageDTO)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> userIdCodeMessageDTO.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>例如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"sendMessage"</span>, method = RequestMethod.POST)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sendMesscage</span><span class="params">(@RequestBody UserIdCodeDTO userIdCodeMessageDTO)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> userIdCodeMessageDTO.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>运用次注解后，SprimgMVC将会把post或者get请求来的信息进行逆序列化，组成对象，前提是你传过来的值跟该对象匹配。</p>
 <h3 id="注意！！"><a href="#注意！！" class="headerlink" title="注意！！"></a>注意！！</h3><p>使用该注解以后，若想传送非json格式代码，需要指定请求头Content-Type为application/json，否则对象所有属性将为null。</p>
 
@@ -451,19 +451,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">

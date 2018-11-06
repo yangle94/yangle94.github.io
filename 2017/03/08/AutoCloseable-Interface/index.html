@@ -160,7 +160,7 @@
         <p>今天在关闭输入输出流的时候，觉得总是手动去关闭太麻烦，有没有什么简单的方法。于是乎发现了AutoCloseable这个接口。</p>
 <h2 id="重申一下为什么要手动关闭输入输出流"><a href="#重申一下为什么要手动关闭输入输出流" class="headerlink" title="重申一下为什么要手动关闭输入输出流"></a>重申一下为什么要手动关闭输入输出流</h2><p>对于平常的Java对象来说，如果Java的gc机制发现某个对象已经不可到达，就会启动对此对象的内存回收机制。当然，他什么时候能够把对象回收完了，是根据操作系统的调度来决定的，并不是说gc机制一起动，就能立刻回收此对象的内存。但是对于InputStream和OutputStream以及他们的子类来说，如果开启了某个流，就会有操作系统之外的资源依附在某个Java对象上，这就导致gc认为其实活着的，而不是死亡的，所以并不能出发gc机制。</p>
 <h2 id="AutoCloseable接口"><a href="#AutoCloseable接口" class="headerlink" title="AutoCloseable接口"></a>AutoCloseable接口</h2><p>在Java1.7中提供了新的AutoCloseable接口，以前的Closeable接口扩展了AutoCloseable接口，也就是说，所有的实现了Closeable接口的输入输出流全部实现了AutoCloseable接口，就是说所有的输入输出流都能进行带资源的try catch语句。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReaderTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span>(BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(        </div><div class="line">                <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"/home/angle/test.webp"</span>)),<span class="string">"UTF8"</span>),<span class="number">1024</span>))&#123;</div><div class="line">            System.out.println(reader.readLine());    <span class="comment">//这里直接读一行</span></div><div class="line">        &#125;<span class="keyword">catch</span>(IOException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReaderTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>(BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(        </span><br><span class="line">                <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"/home/angle/test.webp"</span>)),<span class="string">"UTF8"</span>),<span class="number">1024</span>))&#123;</span><br><span class="line">            System.out.println(reader.readLine());    <span class="comment">//这里直接读一行</span></span><br><span class="line">        &#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时，就不需要我们自己手动去关闭输入、输出流了，带资源的try块儿会帮我们把资源管理好。</p>
 <h2 id="注：关于带资源的try语句的3个关键点："><a href="#注：关于带资源的try语句的3个关键点：" class="headerlink" title="注：关于带资源的try语句的3个关键点："></a>注：关于带资源的try语句的3个关键点：</h2><p>由带资源的try语句管理的资源必须是实现了AutoCloseable接口的类的对象。</p>
 <p>在try代码中声明的资源被隐式声明为fianl。</p>
@@ -454,19 +454,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">

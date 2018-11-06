@@ -167,7 +167,7 @@
 <h3 id="ApiModel"><a href="#ApiModel" class="headerlink" title="@ApiModel"></a>@ApiModel</h3><p>描述一个Model的信息（这种一般用在post创建的时候，使用@RequestBody这样的场景，请求参数无法使用@ApiImplicitParam注解进行描述的时候）</p>
 <h3 id="ApiModelProperty"><a href="#ApiModelProperty" class="headerlink" title="@ApiModelProperty"></a>@ApiModelProperty</h3><p>描述一个model的属性</p>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>对于@ApiImplicitParams、@ApiImplicitParam、@ApiModel、@ApiModelProperty的使用情景。<br>首先，对于类似application/x-www-form-urlencoded等除了application/json以外的传输方式，其传输内容实质上是K-V的方式进行传递的，此时可以用@ApiImplicitParams、@ApiImplicitParam对所传入的参数进行描述，但是如果使用application/json的方式传输JSON字符串，这种表示方式是<br>不可用的，因为无法准确表示字符串中每个字段所代表的值。此时，就应该使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@ApiOperation</span>(value=<span class="string">"使用httpClient爬取页面"</span>, notes=<span class="string">"使用httpClient爬取页面"</span>, produces = <span class="string">"application/json"</span>)</div><div class="line"><span class="meta">@ApiImplicitParam</span>(name = <span class="string">"pageInfoDto"</span>, value = <span class="string">"用户详细实体user"</span>, required = <span class="keyword">true</span>, dataType = <span class="string">"PageInfoDto"</span>, paramType = <span class="string">"body"</span>)</div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"getValue"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">getValue</span><span class="params">(@RequestBody PageInfoDto pageInfoDto)</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation</span>(value=<span class="string">"使用httpClient爬取页面"</span>, notes=<span class="string">"使用httpClient爬取页面"</span>, produces = <span class="string">"application/json"</span>)</span><br><span class="line"><span class="meta">@ApiImplicitParam</span>(name = <span class="string">"pageInfoDto"</span>, value = <span class="string">"用户详细实体user"</span>, required = <span class="keyword">true</span>, dataType = <span class="string">"PageInfoDto"</span>, paramType = <span class="string">"body"</span>)</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"getValue"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">getValue</span><span class="params">(@RequestBody PageInfoDto pageInfoDto)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>这个时候可以使用一个@ApiImplicitParam来描述所传JSON的信息，千万不可以用@ApiImplicitParams，否则swagger-ui的界面上会出现异常的参数形式。此时，可以配合@ApiModel、 @ApiModelProperty在当前参数的实体类上对信息进行描述。</p>
 
       
@@ -454,19 +454,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -178,12 +178,12 @@
 <h3 id="安装-homebrew"><a href="#安装-homebrew" class="headerlink" title="安装 homebrew"></a>安装 homebrew</h3><p>homebrew是Mac下的软件管理程序，类似于centos的yum。</p>
 <p><a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="noopener">homebrew官方网站</a></p>
 <p>下载安装方法、更换国内镜像源等详情请google，目前我在这里仅仅提供部分命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew update 更新brew列表</div><div class="line">brew search node.js    查询node.js（可以查看最新版本的node.js，然后brew install node7.js）</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update 更新brew列表</span><br><span class="line">brew search node.js    查询node.js（可以查看最新版本的node.js，然后brew install node7.js）</span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><h4 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h4><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官方网站</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli 安装hexo客户端</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli 安装hexo客户端</span><br></pre></td></tr></table></figure>
 <h4 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h4><p>安装完成hexo后，执行建站命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo init &lt;你要存放的目录&gt;</div><div class="line"><span class="built_in">cd</span> &lt;你要存放的目录&gt;</div><div class="line">npm install</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;你要存放的目录&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;你要存放的目录&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>新建完成后，指定文件夹的目录如下：</p>
 <p>.<br>├── _config.yml<br>├── package.json<br>├── scaffolds<br>├── source<br>|   ├── _drafts<br>|   └── _posts<br>└── themes</p>
 <p>打开_config.yml，此网站的大部分配置都在里面。</p>
@@ -208,7 +208,7 @@ permalink_defaults  永久链接中各部分的默认值
 </code></pre><p>切记切记，yml文件有特殊的配置，类似于键值对的 :后一定要有个空格，不然会报错！！！</p>
 <hr>
 <hr>
-<h3 id="hexo命令简介"><a href="#hexo命令简介" class="headerlink" title="hexo命令简介"></a>hexo命令简介</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo s  开启本地访问服务器</div><div class="line">hexo d  上传文件</div><div class="line">hexo g  生成静态文件</div><div class="line">hexo clean 清理本地静态文件</div></pre></td></tr></table></figure>
+<h3 id="hexo命令简介"><a href="#hexo命令简介" class="headerlink" title="hexo命令简介"></a>hexo命令简介</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo s  开启本地访问服务器</span><br><span class="line">hexo d  上传文件</span><br><span class="line">hexo g  生成静态文件</span><br><span class="line">hexo clean 清理本地静态文件</span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>在你刚才创建的目录下，使用git对源码进行备份，防止丢失。</p>
 <p>在github上创建一个仓库专门用来存储此处的源代码，具体操作在github上创建仓库的时候会有提示，再此不进行教程了。</p>
@@ -502,19 +502,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
