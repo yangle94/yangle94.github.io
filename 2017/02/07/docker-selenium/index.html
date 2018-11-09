@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。 1 使用场景调研  完成某个功能的所有操作步骤在同一个页面、session中。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.ylapl.cn/seleniumgrid.jpg">
-<meta property="og:image" content="http://img.ylapl.cn/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png">
-<meta property="og:updated_time" content="2018-11-06T07:19:05.222Z">
+<meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg">
+<meta property="og:image" content="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png">
+<meta property="og:updated_time" content="2018-11-07T06:37:36.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker化selenium grid">
 <meta name="twitter:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。 1 使用场景调研  完成某个功能的所有操作步骤在同一个页面、session中。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
-<meta name="twitter:image" content="http://img.ylapl.cn/seleniumgrid.jpg">
+<meta name="twitter:image" content="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -181,8 +181,8 @@
 <a id="more"></a>
 <h2 id="2-Docker化Selenium-Grid2还存在的问题"><a href="#2-Docker化Selenium-Grid2还存在的问题" class="headerlink" title="2 Docker化Selenium Grid2还存在的问题"></a>2 Docker化Selenium Grid2还存在的问题</h2><hr>
 <p>Windows对docker提供的镜像分别为nanoServer和windowsservercore，但其中并不存在GUI、IE等所需内容，查阅官方资料，官方人员说明目前项目并不支持GUI操作。详见<a href="https://blog.docker.com/2016/09/dockerforws2016/#comment-367168" target="_blank" rel="noopener">关于docker产品经理对于Windows GUI的说明</a>。 目前对于windows镜像需要人为的干预。目前我所采用的方式是为单独建立windows的虚拟机，在虚拟机上对重新部署selenium。<br>在对含有插件的页面进行访问时，需要提前将插件安装好，也就是说需要提前对docker file进行构建。</p>
-<h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://img.ylapl.cn/seleniumgrid.jpg" alt=""></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
-<p>在selenium grid的hub节点中自带了一个监控页面，用于监控每个节点的运行情况、ip端口信息，包括有多少任务在排队中当前总共有多少任务在运行等，此页面访问地址为selenium hub节点的4444端口。<br><img src="http://img.ylapl.cn/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png" alt=""></p>
+<h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg" alt=""></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
+<p>在selenium grid的hub节点中自带了一个监控页面，用于监控每个节点的运行情况、ip端口信息，包括有多少任务在排队中当前总共有多少任务在运行等，此页面访问地址为selenium hub节点的4444端口。<br><img src="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png" alt=""></p>
 <h2 id="5-部署步骤"><a href="#5-部署步骤" class="headerlink" title="5 部署步骤"></a>5 部署步骤</h2><hr>
 <p>部署selenium hub<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 4444:4444 –name registry.cn-hangzhou.aliyuncs.com/angle/selenium-hub:2.1</span><br></pre></td></tr></table></figure></p>
 <p>部署chrome<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P -p 5900:5900 –link selenium-hub:hub –name chrome registry.cn-hangzhou.aliyuncs.com/angle/node-chrome-debug:2.1</span><br></pre></td></tr></table></figure></p>
@@ -458,14 +458,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">函数式编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">FastJson</a>
               </li>
              
@@ -535,6 +527,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Docker、Https、Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
               </li>
              
               <li class="article-tag-list-item">
