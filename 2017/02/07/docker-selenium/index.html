@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yangle94.github.io">
   <title>docker化selenium grid | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -41,7 +41,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -181,8 +181,8 @@
 <a id="more"></a>
 <h2 id="2-Docker化Selenium-Grid2还存在的问题"><a href="#2-Docker化Selenium-Grid2还存在的问题" class="headerlink" title="2 Docker化Selenium Grid2还存在的问题"></a>2 Docker化Selenium Grid2还存在的问题</h2><hr>
 <p>Windows对docker提供的镜像分别为nanoServer和windowsservercore，但其中并不存在GUI、IE等所需内容，查阅官方资料，官方人员说明目前项目并不支持GUI操作。详见<a href="https://blog.docker.com/2016/09/dockerforws2016/#comment-367168" target="_blank" rel="noopener">关于docker产品经理对于Windows GUI的说明</a>。 目前对于windows镜像需要人为的干预。目前我所采用的方式是为单独建立windows的虚拟机，在虚拟机上对重新部署selenium。<br>在对含有插件的页面进行访问时，需要提前将插件安装好，也就是说需要提前对docker file进行构建。</p>
-<h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg" alt=""></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
-<p>在selenium grid的hub节点中自带了一个监控页面，用于监控每个节点的运行情况、ip端口信息，包括有多少任务在排队中当前总共有多少任务在运行等，此页面访问地址为selenium hub节点的4444端口。<br><img src="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png" alt=""></p>
+<h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id><a href="#" class="headerlink" title></a><img src="http://oiivgasq3.bkt.clouddn.com/seleniumgrid.jpg" alt></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
+<p>在selenium grid的hub节点中自带了一个监控页面，用于监控每个节点的运行情况、ip端口信息，包括有多少任务在排队中当前总共有多少任务在运行等，此页面访问地址为selenium hub节点的4444端口。<br><img src="http://oiivgasq3.bkt.clouddn.com/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png" alt></p>
 <h2 id="5-部署步骤"><a href="#5-部署步骤" class="headerlink" title="5 部署步骤"></a>5 部署步骤</h2><hr>
 <p>部署selenium hub<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 4444:4444 –name registry.cn-hangzhou.aliyuncs.com/angle/selenium-hub:2.1</span><br></pre></td></tr></table></figure></p>
 <p>部署chrome<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P -p 5900:5900 –link selenium-hub:hub –name chrome registry.cn-hangzhou.aliyuncs.com/angle/node-chrome-debug:2.1</span><br></pre></td></tr></table></figure></p>
@@ -352,15 +352,15 @@
   
 
   
-  <div id="SOHUCS" sid="docker-selenium" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+  <div id="SOHUCS" sid="docker-selenium"></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
 <script type="text/javascript">
     window.changyan.api.config({
         appid: "cytdVXdWU",
         conf: "prod_e10c3d98c7ba6ab05d8b9cd305f60f62"
     });
 </script>
-</script>
+
   
 
   
@@ -375,7 +375,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Angle
+    		&copy; 2019 Angle
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -494,6 +494,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
@@ -528,25 +540,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Docker、Https、Nginx</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
