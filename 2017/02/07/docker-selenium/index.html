@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
   <title>docker化selenium grid | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。 1 使用场景调研  完成某个功能的所有操作步骤在同一个页面、session中。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
-<meta name="keywords" content="Selenium Grid,Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker化selenium grid">
 <meta property="og:url" content="https://yangle94.github.io/2017/02/07/docker-selenium/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。 1 使用场景调研  完成某个功能的所有操作步骤在同一个页面、session中。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://img.ylapl.cn/seleniumgrid.jpg">
 <meta property="og:image" content="http://img.ylapl.cn/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png">
-<meta property="og:updated_time" content="2019-11-15T05:46:57.902Z">
+<meta property="article:published_time" content="2017-02-07T07:08:32.000Z">
+<meta property="article:modified_time" content="2019-11-15T05:46:57.902Z">
+<meta property="article:author" content="Angle">
+<meta property="article:tag" content="Selenium Grid">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker化selenium grid">
-<meta name="twitter:description" content="因为工作需要，本人构建了一个docker化selenium grid，特此记录，以备其它有用的人使用。 1 使用场景调研  完成某个功能的所有操作步骤在同一个页面、session中。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）之间必须进行浏览器层的cookies隔离，保证相互之间cookies不应相互影响。  对同一个虚拟机中多个浏览器（多个webdriver、不同用户）进行">
 <meta name="twitter:image" content="http://img.ylapl.cn/seleniumgrid.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
@@ -40,8 +41,8 @@
 
   
 
-</head>
-</html>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -54,7 +55,7 @@
 			<img src="http://img.ylapl.cn/dog.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Angle</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -102,7 +103,7 @@
 				<img src="http://img.ylapl.cn/dog.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Angle</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -180,16 +181,12 @@
 </ol>
 <a id="more"></a>
 <h2 id="2-Docker化Selenium-Grid2还存在的问题"><a href="#2-Docker化Selenium-Grid2还存在的问题" class="headerlink" title="2 Docker化Selenium Grid2还存在的问题"></a>2 Docker化Selenium Grid2还存在的问题</h2><hr>
-<p>Windows对docker提供的镜像分别为nanoServer和windowsservercore，但其中并不存在GUI、IE等所需内容，查阅官方资料，官方人员说明目前项目并不支持GUI操作。详见<a href="https://blog.docker.com/2016/09/dockerforws2016/#comment-367168" target="_blank" rel="noopener">关于docker产品经理对于Windows GUI的说明</a>。 目前对于windows镜像需要人为的干预。目前我所采用的方式是为单独建立windows的虚拟机，在虚拟机上对重新部署selenium。<br>在对含有插件的页面进行访问时，需要提前将插件安装好，也就是说需要提前对docker file进行构建。</p>
-<h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id><a href="#" class="headerlink" title></a><img src="http://img.ylapl.cn/seleniumgrid.jpg" alt></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
-<p>在selenium grid的hub节点中自带了一个监控页面，用于监控每个节点的运行情况、ip端口信息，包括有多少任务在排队中当前总共有多少任务在运行等，此页面访问地址为selenium hub节点的4444端口。<br><img src="http://img.ylapl.cn/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png" alt></p>
+<p>Windows对docker提供的镜像分别为nanoServer和windowsservercore，但其中并不存在GUI、IE等所需内容，查阅官方资料，官方人员说明目前项目并不支持GUI操作。详见<a target="_blank" rel="noopener" href="https://blog.docker.com/2016/09/dockerforws2016/#comment-367168">关于docker产品经理对于Windows GUI的说明</a>。 目前对于windows镜像需要人为的干预。目前我所采用的方式是为单独建立windows的虚拟机，在虚拟机上对重新部署selenium。<br>在对含有插件的页面进行访问时，需要提前将插件安装好，也就是说需要提前对docker file进行构建。</p>
+<h2 id="3-整体构建图"><a href="#3-整体构建图" class="headerlink" title="3 整体构建图"></a>3 整体构建图</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://img.ylapl.cn/seleniumgrid.jpg" alt=""></h2><h2 id="4-各个node节点的功能性监控"><a href="#4-各个node节点的功能性监控" class="headerlink" title="4 各个node节点的功能性监控"></a>4 各个node节点的功能性监控</h2><hr>
+<p>在selenium grid的hub节点中自带了一个监控页面，用于监控每个节点的运行情况、ip端口信息，包括有多少任务在排队中当前总共有多少任务在运行等，此页面访问地址为selenium hub节点的4444端口。<br><img src="http://img.ylapl.cn/BDB86A2C-4358-49D1-86B8-1F596F88EA4C.png" alt=""></p>
 <h2 id="5-部署步骤"><a href="#5-部署步骤" class="headerlink" title="5 部署步骤"></a>5 部署步骤</h2><hr>
-<p>部署selenium hub<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 4444:4444 –name registry.cn-hangzhou.aliyuncs.com/angle/selenium-hub:2.1</span><br></pre></td></tr></table></figure></p>
-<p>部署chrome<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P -p 5900:5900 –link selenium-hub:hub –name chrome registry.cn-hangzhou.aliyuncs.com/angle/node-chrome-debug:2.1</span><br></pre></td></tr></table></figure></p>
-<p>部署firefox<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P -p 5901:5900 –link selenium-hub:hub –name firefox registry.cn-hangzhou.aliyuncs.com/angle/node-firefox-debug:2.1</span><br></pre></td></tr></table></figure></p>
-<p>部署IE<br>nodeconfig.json<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">“capabilities”:</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            “browserName”: “internet explorer”,</span><br><span class="line">            “maxInstances”: 3,</span><br><span class="line">            “seleniumProtocol”: “WebDriver”</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">“proxy”: “org.openqa.grid.selenium.proxy.DefaultRemoteProxy”,</span><br><span class="line">“maxSession”: 3,</span><br><span class="line">“port”: 5555,</span><br><span class="line">“register”: true,</span><br><span class="line">“registerCycle”: 5000,</span><br><span class="line">“hub”: “http://localhost:4444“,</span><br><span class="line">“nodeStatusCheckTimeout”: 5000,</span><br><span class="line">“nodePolling”: 5000,</span><br><span class="line">“role”: “node”,</span><br><span class="line">“unregisterIfStillDownAfter”: 60000,</span><br><span class="line">“downPollingLimit”: 2,</span><br><span class="line">“debug”: false,</span><br><span class="line">“servlets” : [],</span><br><span class="line">“withoutServlets”: [],</span><br><span class="line">“custom”: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>下载selenium-server-standalone-3.0.1.jar</p>
-<p>下载地址：<br><a href="https://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar" target="_blank" rel="noopener">https://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar</a></p>
+<p>部署selenium hub<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 4444:4444 –name registry.cn-hangzhou.aliyuncs.com/angle/selenium-hub:2.1</span><br></pre></td></tr></table></figure><br>部署chrome<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P -p 5900:5900 –link selenium-hub:hub –name chrome registry.cn-hangzhou.aliyuncs.com/angle/node-chrome-debug:2.1</span><br></pre></td></tr></table></figure><br>部署firefox<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P -p 5901:5900 –link selenium-hub:hub –name firefox registry.cn-hangzhou.aliyuncs.com/angle/node-firefox-debug:2.1</span><br></pre></td></tr></table></figure><br>部署IE<br>nodeconfig.json<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">“capabilities”:</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            “browserName”: “internet explorer”,</span><br><span class="line">            “maxInstances”: 3,</span><br><span class="line">            “seleniumProtocol”: “WebDriver”</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">“proxy”: “org.openqa.grid.selenium.proxy.DefaultRemoteProxy”,</span><br><span class="line">“maxSession”: 3,</span><br><span class="line">“port”: 5555,</span><br><span class="line">“register”: true,</span><br><span class="line">“registerCycle”: 5000,</span><br><span class="line">“hub”: “http://localhost:4444“,</span><br><span class="line">“nodeStatusCheckTimeout”: 5000,</span><br><span class="line">“nodePolling”: 5000,</span><br><span class="line">“role”: “node”,</span><br><span class="line">“unregisterIfStillDownAfter”: 60000,</span><br><span class="line">“downPollingLimit”: 2,</span><br><span class="line">“debug”: false,</span><br><span class="line">“servlets” : [],</span><br><span class="line">“withoutServlets”: [],</span><br><span class="line">“custom”: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>下载selenium-server-standalone-3.0.1.jar</p>
+<p>下载地址：<br><a target="_blank" rel="noopener" href="https://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar">https://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar</a></p>
 <p>部署命令<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar selenium-server-standalone.jar -role node -nodeConfig nodeconfig.json</span><br></pre></td></tr></table></figure></p>
 <h3 id="6-已解决的问题"><a href="#6-已解决的问题" class="headerlink" title="6 已解决的问题"></a>6 已解决的问题</h3><p>我所用的原始Selenium Grid Docker镜像中有中文乱码问题，需要在docker file中加入字符集解决。<br>Selenium Grid中存在监控功能并不完善，若想要获取此类信息数据，需要加入自定义servlet（关于此章我会在另一片文章中介绍）</p>
 <h3 id="7-下载以及中文适配"><a href="#7-下载以及中文适配" class="headerlink" title="7 下载以及中文适配"></a>7 下载以及中文适配</h3><p>由于selenium官方的docker镜像对于中文兼容性不是很好，会出现某些中文乱码的问题，其实是因为其包含的乌班图镜像中缺少了部分字符集的原因，为了修复这个问题，我特意制作了修复了此问题的镜像并上传到了阿里云镜像服务器（代码中已经替换）。</p>
@@ -450,11 +447,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">AutoCloseable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,7 +459,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">AutoCloseable</a>
+                <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,11 +479,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,15 +511,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,15 +519,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Docker、Https、Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
               </li>
             
             <div class="clearfix"></div>
@@ -546,7 +543,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在文章根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

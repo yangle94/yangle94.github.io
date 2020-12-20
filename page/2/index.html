@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
   <title>Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,9 +12,9 @@
 <meta property="og:title" content="Angle&#39;s blog">
 <meta property="og:url" content="https://yangle94.github.io/page/2/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Angle">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angle&#39;s blog">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -32,8 +32,8 @@
 
   
 
-</head>
-</html>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -46,7 +46,7 @@
 			<img src="http://img.ylapl.cn/dog.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Angle</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -94,7 +94,7 @@
 				<img src="http://img.ylapl.cn/dog.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Angle</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -157,7 +157,10 @@
         <p>今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。</p>
 <h2 id="注解列表"><a href="#注解列表" class="headerlink" title="注解列表"></a>注解列表</h2><h3 id="Api"><a href="#Api" class="headerlink" title="@Api"></a>@Api</h3><p>用在类上，说明该类的作用</p>
 <h3 id="ApiOperation"><a href="#ApiOperation" class="headerlink" title="@ApiOperation"></a>@ApiOperation</h3><p>用在方法上，说明方法的作用(当方法所需参数为对象时，)</p>
-<h3 id="ApiImplicitParams、-ApiImplicitParam"><a href="#ApiImplicitParams、-ApiImplicitParam" class="headerlink" title="@ApiImplicitParams、@ApiImplicitParam"></a>@ApiImplicitParams、@ApiImplicitParam</h3><p>@ApiImplicitParams({<br>    @ApiImplicitParam<br>})<br>用在@ApiImplicitParams注解中，指定一个请求参数的各个方面<br>paramType:<br>参数放在哪个地方<br>&gt;<br>header–&gt;请求参数的获取：@RequestHeader<br>query–&gt;请求参数的获取：@RequestParam<br>path（用于restful接口）–&gt;请求参数的获取：@PathVariable<br>body（不常用）<br>form（不常用）<br>name：参数名<br>dataType：参数类型<br>required：参数是否必须传<br>value：参数的意思<br>defaultValue：参数的默认值</p>
+<h3 id="ApiImplicitParams、-ApiImplicitParam"><a href="#ApiImplicitParams、-ApiImplicitParam" class="headerlink" title="@ApiImplicitParams、@ApiImplicitParam"></a>@ApiImplicitParams、@ApiImplicitParam</h3><p>@ApiImplicitParams({<br>    @ApiImplicitParam<br>})<br>用在@ApiImplicitParams注解中，指定一个请求参数的各个方面<br>paramType:<br>参数放在哪个地方</p>
+<blockquote>
+</blockquote>
+<p>header–&gt;请求参数的获取：@RequestHeader<br>query–&gt;请求参数的获取：@RequestParam<br>path（用于restful接口）–&gt;请求参数的获取：@PathVariable<br>body（不常用）<br>form（不常用）<br>name：参数名<br>dataType：参数类型<br>required：参数是否必须传<br>value：参数的意思<br>defaultValue：参数的默认值</p>
         
           <a class="article-more-a" href="/2017/03/14/swagger-annotation/#more">more >></a>
         
@@ -310,7 +313,7 @@
         <p>今天在关闭输入输出流的时候，觉得总是手动去关闭太麻烦，有没有什么简单的方法。于是乎发现了AutoCloseable这个接口。</p>
 <h2 id="重申一下为什么要手动关闭输入输出流"><a href="#重申一下为什么要手动关闭输入输出流" class="headerlink" title="重申一下为什么要手动关闭输入输出流"></a>重申一下为什么要手动关闭输入输出流</h2><p>对于平常的Java对象来说，如果Java的gc机制发现某个对象已经不可到达，就会启动对此对象的内存回收机制。当然，他什么时候能够把对象回收完了，是根据操作系统的调度来决定的，并不是说gc机制一起动，就能立刻回收此对象的内存。但是对于InputStream和OutputStream以及他们的子类来说，如果开启了某个流，就会有操作系统之外的资源依附在某个Java对象上，这就导致gc认为其实活着的，而不是死亡的，所以并不能出发gc机制。</p>
 <h2 id="AutoCloseable接口"><a href="#AutoCloseable接口" class="headerlink" title="AutoCloseable接口"></a>AutoCloseable接口</h2><p>在Java1.7中提供了新的AutoCloseable接口，以前的Closeable接口扩展了AutoCloseable接口，也就是说，所有的实现了Closeable接口的输入输出流全部实现了AutoCloseable接口，就是说所有的输入输出流都能进行带资源的try catch语句。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReaderTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>(BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(        </span><br><span class="line">                <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"/home/angle/test.webp"</span>)),<span class="string">"UTF8"</span>),<span class="number">1024</span>))&#123;</span><br><span class="line">            System.out.println(reader.readLine());    <span class="comment">//这里直接读一行</span></span><br><span class="line">        &#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReaderTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>(BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(        </span><br><span class="line">                <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">&quot;/home/angle/test.webp&quot;</span>)),<span class="string">&quot;UTF8&quot;</span>),<span class="number">1024</span>))&#123;</span><br><span class="line">            System.out.println(reader.readLine());    <span class="comment">//这里直接读一行</span></span><br><span class="line">        &#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时，就不需要我们自己手动去关闭输入、输出流了，带资源的try块儿会帮我们把资源管理好。</p>
 <h2 id="注：关于带资源的try语句的3个关键点："><a href="#注：关于带资源的try语句的3个关键点：" class="headerlink" title="注：关于带资源的try语句的3个关键点："></a>注：关于带资源的try语句的3个关键点：</h2><p>由带资源的try语句管理的资源必须是实现了AutoCloseable接口的类的对象。</p>
 <p>在try代码中声明的资源被隐式声明为fianl。</p>
@@ -395,9 +398,7 @@
         <h2 id="静态工厂方法优点"><a href="#静态工厂方法优点" class="headerlink" title="静态工厂方法优点"></a>静态工厂方法优点</h2><ol>
 <li>静态工厂方法有名称，根据名称可以做到见文知意。对于构造方法而言，由于方法签名的原因，一个类只可能一种相同的方法签名，当然，可以通过参数顺序来克服这个问题，但是，相同参数容易让人混乱，而且有可能错过了编译器的异常。</li>
 <li>静态工厂方法可以不必每次调用它的时候都创建一个新的对象。</li>
-<li>可以返回原返回类型的任何子类型对象。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Service</span></span>&#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Provider</span></span>&#123;</span><br><span class="line">    <span class="function">Service <span class="title">newService</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="comment">//不允许外部实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Service</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String,Provider&gt; providers = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String defKey = <span class="string">"&lt;def&gt;"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注册</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(Provider provider)</span> </span>&#123;</span><br><span class="line">        registerProvider(defKey, provider);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(String name, Provider provider)</span> </span>&#123;</span><br><span class="line">        providers.put(name, provider);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//获取</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> newInstance(defkey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        Provider p =  providers.get(name);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == p) </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IlleaglArgumentException(<span class="string">"No provider registered with name : "</span> + name);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> p.newService();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<li>可以返回原返回类型的任何子类型对象。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Service</span></span>&#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Provider</span></span>&#123;</span><br><span class="line">    <span class="function">Service <span class="title">newService</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="comment">//不允许外部实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Service</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String,Provider&gt; providers = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String defKey = <span class="string">&quot;&lt;def&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注册</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(Provider provider)</span> </span>&#123;</span><br><span class="line">        registerProvider(defKey, provider);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(String name, Provider provider)</span> </span>&#123;</span><br><span class="line">        providers.put(name, provider);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//获取</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> newInstance(defkey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        Provider p =  providers.get(name);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == p) </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IlleaglArgumentException(<span class="string">&quot;No provider registered with name : &quot;</span> + name);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> p.newService();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2017/03/02/staticFactory/#more">more >></a>
         
@@ -473,7 +474,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="RequestBody注解的源码"><a href="#RequestBody注解的源码" class="headerlink" title="@RequestBody注解的源码"></a>@RequestBody注解的源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestBody &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="RequestBody注解的源码"><a href="#RequestBody注解的源码" class="headerlink" title="@RequestBody注解的源码"></a>@RequestBody注解的源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.PARAMETER&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestBody &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由源码可见，@RequestBody只有一个required属性，默认值为true，该注解会保留至.class文件中，利用反射可以进行查找。</p>
         
           <a class="article-more-a" href="/2017/03/01/SpringMVC-Annotation-RequestBody/#more">more >></a>
@@ -550,10 +551,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇博客有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。</p>
+        <p>今天对某个对象使用FastJson进行序列化的时候想要把某个属性进行隐藏，找了半天没找到FastJson有什么注解。查询了半天发现谋篇文章有关于transient关键字的介绍，看完突然觉得Java白学了，还有这么一个关键字不知道。</p>
 <h2 id="transient的作用及使用方法"><a href="#transient的作用及使用方法" class="headerlink" title="transient的作用及使用方法"></a>transient的作用及使用方法</h2><hr>
 <p>我们知道Java中完成对象的序列化需要实现Serilizable接口，实现了该接口则可以进行对象的序列化。然而在实际的开发中，总会有某些属性我们并不想让它进行序列化，可以对此属性加上transient关键字，以后这个属性就不会再被进行序列化和反序列化。当然，这也成为它的局限性，因为没法让序列化、反序列化不同时进行。</p>
-<p>样例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String passwd;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPasswd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> passwd;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String passwd)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.passwd = passwd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>样例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String passwd;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPasswd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> passwd;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String passwd)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.passwd = passwd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>
         
           <a class="article-more-a" href="/2017/02/28/Java-transient/#more">more >></a>
         
@@ -634,7 +635,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>因为我们身处天朝外加某堵墙的原因，访问Github实在是不稳定，SSH慢的要死，简直了。现在交给大家利用ShadowScoket进行对Github的加速。</p>
-<h2 id="购买一个VPN"><a href="#购买一个VPN" class="headerlink" title="购买一个VPN"></a>购买一个VPN</h2><p>随便什么VPN都好，我这里用的是TMDVPN，我自己用的也是这个，感觉还不错，也不是很贵，有想要的童鞋请给我发Email：1024920977@qq.com，我买的是50元半年，一个月20G流量，<a href="https://www.tmdvpn.cn/auth/register?code=PlMq479CNDyxOdjmFg" target="_blank" rel="noopener">附带邀请码的注册地址</a>。具体使用ShadowScoket的教程他们官网上都有。</p>
+<h2 id="购买一个VPN"><a href="#购买一个VPN" class="headerlink" title="购买一个VPN"></a>购买一个VPN</h2><p>随便什么VPN都好，我这里用的是TMDVPN，我自己用的也是这个，感觉还不错，也不是很贵，有想要的童鞋请给我发Email：<a href="mailto:1024920977@qq.com">1024920977@qq.com</a>，我买的是50元半年，一个月20G流量，<a target="_blank" rel="noopener" href="https://www.tmdvpn.cn/auth/register?code=PlMq479CNDyxOdjmFg">附带邀请码的注册地址</a>。具体使用ShadowScoket的教程他们官网上都有。</p>
 <h2 id="设置Git的代理地址"><a href="#设置Git的代理地址" class="headerlink" title="设置Git的代理地址"></a>设置Git的代理地址</h2>
         
           <a class="article-more-a" href="/2017/02/25/github-ssh-pxory/#more">more >></a>
@@ -712,7 +713,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近搞selenium grid的时候需要收集每个时刻selenium gird的监控数据，找了半天好不容易在selenium的官网文档的某个角落找到了办法，特此记录。</p>
-<p><a href="http://www.seleniumhq.org/docs/07_selenium_grid.jsp#customizing-the-grid" target="_blank" rel="noopener">官网自定义Sevlet文档</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.seleniumhq.org/docs/07_selenium_grid.jsp#customizing-the-grid">官网自定义Sevlet文档</a></p>
 <h3 id="自定义servlet步骤"><a href="#自定义servlet步骤" class="headerlink" title="自定义servlet步骤"></a>自定义servlet步骤</h3><ol>
 <li><p>下载selenium-server-standalone-3.0.1.jar，新建一个java工程并将其当作lib包倒入。</p>
 </li>
@@ -967,7 +968,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1054,11 +1055,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">AutoCloseable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1066,7 +1067,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">AutoCloseable</a>
+                <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1086,11 +1087,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1118,15 +1119,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1134,15 +1127,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Docker、Https、Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1150,7 +1151,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在文章根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

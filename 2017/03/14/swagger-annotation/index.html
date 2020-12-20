@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yangle94.github.io">
   <title>swagger-ui注解 | Angle&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。 注解列表@Api用在类上，说明该类的作用 @ApiOperation用在方法上，说明方法的作用(当方法所需参数为对象时，) @ApiImplicitParams、@ApiImplicitParam@ApiImplicitParam">
-<meta name="keywords" content="swagger-ui">
 <meta property="og:type" content="article">
 <meta property="og:title" content="swagger-ui注解">
 <meta property="og:url" content="https://yangle94.github.io/2017/03/14/swagger-annotation/index.html">
 <meta property="og:site_name" content="Angle&#39;s blog">
 <meta property="og:description" content="今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。 注解列表@Api用在类上，说明该类的作用 @ApiOperation用在方法上，说明方法的作用(当方法所需参数为对象时，) @ApiImplicitParams、@ApiImplicitParam@ApiImplicitParam">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-06-15T04:46:59.000Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-14T02:30:50.000Z">
+<meta property="article:modified_time" content="2017-06-15T04:46:59.000Z">
+<meta property="article:author" content="Angle">
+<meta property="article:tag" content="swagger-ui">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="swagger-ui注解">
-<meta name="twitter:description" content="今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。 注解列表@Api用在类上，说明该类的作用 @ApiOperation用在方法上，说明方法的作用(当方法所需参数为对象时，) @ApiImplicitParams、@ApiImplicitParam@ApiImplicitParam">
   
     <link rel="alternative" href="/atom.xml" title="Angle&#39;s blog" type="application/atom+xml">
   
@@ -37,8 +37,8 @@
 
   
 
-</head>
-</html>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -51,7 +51,7 @@
 			<img src="http://img.ylapl.cn/dog.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Angle</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -99,7 +99,7 @@
 				<img src="http://img.ylapl.cn/dog.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Angle</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -160,14 +160,17 @@
         <p>今天使用swagger的时候出现了不少一点问题，body传上来的Json字符串在swagger-ui上的形式总是不符合我的意愿，我找了好久才找到了问题。特别来记录一下。</p>
 <h2 id="注解列表"><a href="#注解列表" class="headerlink" title="注解列表"></a>注解列表</h2><h3 id="Api"><a href="#Api" class="headerlink" title="@Api"></a>@Api</h3><p>用在类上，说明该类的作用</p>
 <h3 id="ApiOperation"><a href="#ApiOperation" class="headerlink" title="@ApiOperation"></a>@ApiOperation</h3><p>用在方法上，说明方法的作用(当方法所需参数为对象时，)</p>
-<h3 id="ApiImplicitParams、-ApiImplicitParam"><a href="#ApiImplicitParams、-ApiImplicitParam" class="headerlink" title="@ApiImplicitParams、@ApiImplicitParam"></a>@ApiImplicitParams、@ApiImplicitParam</h3><p>@ApiImplicitParams({<br>    @ApiImplicitParam<br>})<br>用在@ApiImplicitParams注解中，指定一个请求参数的各个方面<br>paramType:<br>参数放在哪个地方<br>&gt;<br>header–&gt;请求参数的获取：@RequestHeader<br>query–&gt;请求参数的获取：@RequestParam<br>path（用于restful接口）–&gt;请求参数的获取：@PathVariable<br>body（不常用）<br>form（不常用）<br>name：参数名<br>dataType：参数类型<br>required：参数是否必须传<br>value：参数的意思<br>defaultValue：参数的默认值</p>
+<h3 id="ApiImplicitParams、-ApiImplicitParam"><a href="#ApiImplicitParams、-ApiImplicitParam" class="headerlink" title="@ApiImplicitParams、@ApiImplicitParam"></a>@ApiImplicitParams、@ApiImplicitParam</h3><p>@ApiImplicitParams({<br>    @ApiImplicitParam<br>})<br>用在@ApiImplicitParams注解中，指定一个请求参数的各个方面<br>paramType:<br>参数放在哪个地方</p>
+<blockquote>
+</blockquote>
+<p>header–&gt;请求参数的获取：@RequestHeader<br>query–&gt;请求参数的获取：@RequestParam<br>path（用于restful接口）–&gt;请求参数的获取：@PathVariable<br>body（不常用）<br>form（不常用）<br>name：参数名<br>dataType：参数类型<br>required：参数是否必须传<br>value：参数的意思<br>defaultValue：参数的默认值</p>
 <a id="more"></a>
 <h3 id="ApiResponses"><a href="#ApiResponses" class="headerlink" title="@ApiResponses"></a>@ApiResponses</h3><p>用于表示一组响应</p>
 <h3 id="ApiResponse"><a href="#ApiResponse" class="headerlink" title="@ApiResponse"></a>@ApiResponse</h3><p>用在@ApiResponses中，一般用于表达一个错误的响应信息<br>code：数字，例如400<br>message：信息，例如”请求参数没填好”<br>response：抛出异常的类</p>
 <h3 id="ApiModel"><a href="#ApiModel" class="headerlink" title="@ApiModel"></a>@ApiModel</h3><p>描述一个Model的信息（这种一般用在post创建的时候，使用@RequestBody这样的场景，请求参数无法使用@ApiImplicitParam注解进行描述的时候）</p>
 <h3 id="ApiModelProperty"><a href="#ApiModelProperty" class="headerlink" title="@ApiModelProperty"></a>@ApiModelProperty</h3><p>描述一个model的属性</p>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>对于@ApiImplicitParams、@ApiImplicitParam、@ApiModel、@ApiModelProperty的使用情景。<br>首先，对于类似application/x-www-form-urlencoded等除了application/json以外的传输方式，其传输内容实质上是K-V的方式进行传递的，此时可以用@ApiImplicitParams、@ApiImplicitParam对所传入的参数进行描述，但是如果使用application/json的方式传输JSON字符串，这种表示方式是<br>不可用的，因为无法准确表示字符串中每个字段所代表的值。此时，就应该使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation</span>(value=<span class="string">"使用httpClient爬取页面"</span>, notes=<span class="string">"使用httpClient爬取页面"</span>, produces = <span class="string">"application/json"</span>)</span><br><span class="line"><span class="meta">@ApiImplicitParam</span>(name = <span class="string">"pageInfoDto"</span>, value = <span class="string">"用户详细实体user"</span>, required = <span class="keyword">true</span>, dataType = <span class="string">"PageInfoDto"</span>, paramType = <span class="string">"body"</span>)</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"getValue"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">getValue</span><span class="params">(@RequestBody PageInfoDto pageInfoDto)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation(value=&quot;使用httpClient爬取页面&quot;, notes=&quot;使用httpClient爬取页面&quot;, produces = &quot;application/json&quot;)</span></span><br><span class="line"><span class="meta">@ApiImplicitParam(name = &quot;pageInfoDto&quot;, value = &quot;用户详细实体user&quot;, required = true, dataType = &quot;PageInfoDto&quot;, paramType = &quot;body&quot;)</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;getValue&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">getValue</span><span class="params">(<span class="meta">@RequestBody</span> PageInfoDto pageInfoDto)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>这个时候可以使用一个@ApiImplicitParam来描述所传JSON的信息，千万不可以用@ApiImplicitParams，否则swagger-ui的界面上会出现异常的参数形式。此时，可以配合@ApiModel、 @ApiModelProperty在当前参数的实体类上对信息进行描述。</p>
 
       
@@ -422,11 +425,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">AutoCloseable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -434,7 +437,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">AutoCloseable</a>
+                <a href="javascript:void(0)" class="js-tag color4">Selenium Grid</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -454,11 +457,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,15 +489,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,15 +497,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">swagger-ui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Docker、Https、Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
               </li>
             
             <div class="clearfix"></div>
@@ -518,7 +521,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在文章根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
